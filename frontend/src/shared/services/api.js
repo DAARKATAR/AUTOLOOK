@@ -1,12 +1,18 @@
 import { supabase } from './supabaseClient';
 
 export const catalogApi = {
-  // GET ALL PRODUCTS
-  getProducts: async () => {
-    const { data, error } = await supabase
+  // GET ALL PRODUCTS (CON FILTRO DESDE BACKEND)
+  getProducts: async (storeType = 'todos') => {
+    let query = supabase
       .from('products')
       .select('*')
       .order('id', { ascending: false });
+    
+    if (storeType !== 'todos') {
+      query = query.eq('storeType', storeType);
+    }
+    
+    const { data, error } = await query;
     
     if (error) {
       console.error('Error fetching products:', error);
@@ -46,7 +52,7 @@ export const catalogApi = {
   // UPLOAD IMAGE TO SUPABASE STORAGE
   uploadImage: async (file) => {
     const fileExt = file.name.split('.').pop();
-    const fileName = `${Math.random()}.${fileExt}`;
+    const fileName = `${crypto.randomUUID()}.${fileExt}`;
     const filePath = `public/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
@@ -86,17 +92,10 @@ export const authApi = {
     
     if (error) throw new Error(error.message);
     
-    // Supabase maneja la sesión automáticamente, pero si necesitas el token:
-    localStorage.setItem('token', data.session.access_token);
-    return { success: true, token: data.session.access_token, user: data.user };
+    return { success: true, user: data.user };
   },
   
   logout: async () => {
     await supabase.auth.signOut();
-    localStorage.removeItem('token');
-  },
-
-  isAuthenticated: () => {
-    return !!localStorage.getItem('token');
   }
 };

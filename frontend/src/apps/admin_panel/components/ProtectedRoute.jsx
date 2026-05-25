@@ -1,10 +1,14 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-import { authApi } from '../../../shared/services/api';
+import { useAuth } from '../../shared/context/AuthContext';
 
 const ProtectedRoute = () => {
+  const { session, loading } = useAuth();
+
+  if (loading) return <div>Cargando...</div>;
+
   // If not authenticated, kick user back to login page
-  if (!authApi.isAuthenticated()) {
+  if (!session) {
     return <Navigate to="/login" replace />;
   }
 
