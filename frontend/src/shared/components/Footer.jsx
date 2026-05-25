@@ -10,8 +10,6 @@ const Footer = () => {
             <h2 className="gradient-text">AUTOLOOK</h2>
             <p>Pasión por los motores, compromiso con tu seguridad y el lujo.</p>
             <div className="social-links">
-              <a href="#" className="social-icon">IG</a>
-              <a href="#" className="social-icon">FB</a>
               <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon">WA</a>
             </div>
           </div>
@@ -34,9 +32,8 @@ const Footer = () => {
           </div>
         </div>
         
-        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <p>&copy; {new Date().getFullYear()} AUTOLOOK. Todos los derechos reservados.</p>
-          <a href="/admin" style={{ color: '#333', textDecoration: 'none', fontSize: '0.8rem' }}>Admin Access</a>
+        <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <p>&copy; {new Date().getFullYear()} DAARK TECH SOLUTIONS. Todos los derechos reservados.</p>
         </div>
       </div>
 
