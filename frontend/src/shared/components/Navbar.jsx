@@ -27,6 +27,7 @@ const Navbar = () => {
             <>
               <li><a href="#about">Quiénes Somos</a></li>
               <li><a href="#services">Servicios</a></li>
+              <li><a href="#catalog-section" onClick={() => { if(!document.getElementById('catalog-section')) { document.getElementById('home')?.scrollIntoView(); } }}>Catálogo</a></li>
               <li><a href="#location">Cómo encontrarnos</a></li>
             </>
           )}

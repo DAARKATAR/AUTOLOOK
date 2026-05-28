@@ -8,10 +8,16 @@
   overflow-x: hidden;
 }
 
-/* Animations */
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: opacity, transform;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes float {
@@ -20,17 +26,13 @@
   100% { transform: translateY(0px); }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.animate-fade-in-up {
-  animation: fadeInUp 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-}
-
 .animate-fade-in {
-  animation: fadeIn 0.8s ease-in forwards;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+
+.animate-fade-in.is-visible {
+  opacity: 1;
 }
 
 .animate-float {

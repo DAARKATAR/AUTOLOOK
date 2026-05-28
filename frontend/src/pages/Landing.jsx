@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
@@ -6,11 +6,32 @@ import './Landing.css';
 
 const Landing = () => {
   const [selectedCatalog, setSelectedCatalog] = useState(null);
+  const [catalogKey, setCatalogKey] = useState(0);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        } else {
+          entry.target.classList.remove('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    const hiddenElements = document.querySelectorAll('.animate-on-scroll');
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      hiddenElements.forEach((el) => observer.unobserve(el));
+    };
+  }, [selectedCatalog]); // Re-run when catalog changes to observe new elements
 
   const handleSelectCatalog = (type) => {
     setSelectedCatalog(type);
+    setCatalogKey(prev => prev + 1); // Force re-render of catalog for animation
     setTimeout(() => {
-      document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   };
 
@@ -45,7 +66,7 @@ const Landing = () => {
             Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles.
           </p>
           
-          <div className="hero-cards-grid animate-fade-in-up">
+          <div className="hero-cards-grid animate-on-scroll">
             <div className="luxury-card moto-card animate-float" onClick={() => handleSelectCatalog('motolook')}>
               <div className="card-overlay"></div>
               <div className="card-content">
@@ -77,7 +98,7 @@ const Landing = () => {
 
 
       {/* Quiénes Somos Section */}
-      <section className="about-us-premium animate-fade-in-up" id="about">
+      <section className="about-us-premium animate-on-scroll" id="about">
         <div className="container">
           <div className="about-content-wrapper">
             <div className="about-image-container">
@@ -110,7 +131,7 @@ const Landing = () => {
       </section>
 
       {/* Services Premium Section */}
-      <section className="services-premium" id="services">
+      <section className="services-premium animate-on-scroll" id="services">
         <div className="container">
           <div className="section-header-modern text-center">
             <span className="subtitle-accent">EXPERIENCIA VIP</span>
@@ -139,7 +160,7 @@ const Landing = () => {
 
       {/* Embedded Catalog Section */}
       {selectedCatalog && (
-        <section id="catalog-section" className="catalog-wrapper-premium animate-fade-in">
+        <section id="catalog-section" key={catalogKey} className="catalog-wrapper-premium animate-fade-in animate-on-scroll">
           {selectedCatalog === 'autolook' ? (
              <SharedCatalog 
               storeType="autolook"
@@ -163,7 +184,7 @@ const Landing = () => {
       )}
 
       {/* Cómo encontrarnos Section */}
-      <section className="location-premium animate-fade-in-up" id="location">
+      <section className="location-premium animate-on-scroll" id="location">
         <div className="container">
           <div className="section-header-modern text-center">
             <span className="subtitle-accent">UBICACIÓN Y CONTACTO</span>
