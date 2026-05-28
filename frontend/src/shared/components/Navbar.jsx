@@ -25,6 +25,7 @@ const Navbar = () => {
         <ul className="nav-links">
           {isHome && (
             <>
+              <li><a href="#about">Quiénes Somos</a></li>
               <li><a href="#services">Servicios</a></li>
               <li><a href="#contact">Contacto</a></li>
             </>

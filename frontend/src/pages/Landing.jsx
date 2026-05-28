@@ -105,14 +105,29 @@ const Landing = () => {
         <div className="container">
           <div className="about-content-wrapper">
             <div className="about-image-container">
-              <img src="/quienes-somos.jpg" alt="Nuestro Fundador" className="about-image blur-effect animate-float" />
+              <img src="/quienes-somos.jpg" alt="Autolook Colombia Instalaciones" className="about-image blur-effect animate-float" />
               <div className="about-image-glow"></div>
             </div>
             <div className="about-text-container">
               <span className="subtitle-accent">NUESTRA HISTORIA</span>
-              <h2>Pasión por el motor, <span className="gradient-neon">Excelencia en el servicio</span></h2>
-              <p>Somos más que una tienda de repuestos. Somos entusiastas del mundo automotor dedicados a ofrecerte los mejores accesorios, lujos y partes de rendimiento del mercado. Nacimos de la pasión por las dos y cuatro ruedas, y esa misma pasión es la que nos impulsa a buscar siempre la máxima calidad para tu vehículo.</p>
-              <p>Cada pieza en nuestro catálogo ha sido seleccionada pensando en conductores exigentes que no se conforman con lo básico.</p>
+              <h2>AUTOLOOK <span className="gradient-neon">COLOMBIA</span></h2>
+              <p>
+                <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 13 #10-04)</strong>.
+              </p>
+              
+              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>Nuestra Misión</h3>
+              <p>
+                Ser un aliado confiable para nuestros clientes con instalación profesional de accesorios para vehículos, ofreciendo los mejores productos del mercado al mejor precio y garantizando excelencia y atención personalizada.
+              </p>
+
+              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>¿Por qué elegirnos?</h3>
+              <p>
+                Prestamos el mejor servicio de instalaciones profesionales limpias, seguras y garantizadas utilizando productos de alta calidad y al mejor precio. Nuestra experiencia de más de 15 años trabajando con concesionarios y particulares nos han convertido en un aliado confiable y recomendado dentro del sector automotriz.
+              </p>
+              
+              <div style={{ marginTop: '2rem', padding: '1rem', borderLeft: '4px solid var(--primary)', backgroundColor: 'rgba(255,255,255,0.03)', fontStyle: 'italic' }}>
+                "Si llevo mi vehículo a Autolook, sé que está en buenas manos, tendré una buena instalación, garantía y producto."
+              </div>
             </div>
           </div>
         </div>

@@ -10,7 +10,10 @@ const Footer = () => {
             <h2 className="gradient-text">AUTOLOOK</h2>
             <p>Pasión por los motores, compromiso con tu seguridad y el lujo.</p>
             <div className="social-links">
-              <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon">WA</a>
+              <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon" title="WhatsApp">WA</a>
+              <a href="#" className="social-icon" title="Instagram (Próximamente)">IG</a>
+              <a href="#" className="social-icon" title="Facebook (Próximamente)">FB</a>
+              <a href="#" className="social-icon" title="TikTok (Próximamente)">TK</a>
             </div>
           </div>
           
@@ -30,6 +33,13 @@ const Footer = () => {
               <li>Domingos y festivos: Cerrado</li>
             </ul>
           </div>
+          
+          <div className="footer-links">
+            <h4>Nuestra Ubicación</h4>
+            <div style={{ width: '100%', height: '150px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px dashed rgba(255,255,255,0.2)', color: 'var(--text-dim)', textAlign: 'center', padding: '1rem' }}>
+              <span>Espacio reservado para<br/>Google Maps</span>
+            </div>
+          </div>
         </div>
         
         <div className="footer-bottom" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -45,8 +55,8 @@ const Footer = () => {
         }
         .footer-grid {
           display: grid;
-          grid-template-columns: 2fr 1fr 1fr;
-          gap: 4rem;
+          grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+          gap: 2rem;
         }
         .footer-brand h2 {
           font-size: 2rem;

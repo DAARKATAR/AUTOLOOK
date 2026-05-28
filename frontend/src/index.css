@@ -1,31 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  /* MotoLook Theme (Default) */
-  --primary: #0088ff;
-  --primary-glow: rgba(0, 136, 255, 0.5);
-  --secondary: #ff6a00;
-  --secondary-glow: rgba(255, 106, 0, 0.5);
+  /* Brand Identity: Autolook Colombia */
+  --primary: #E60000; /* Vibrant Red */
+  --primary-glow: rgba(230, 0, 0, 0.5);
+  --secondary: #0A1128; /* Dark Blue */
+  --secondary-glow: rgba(10, 17, 40, 0.5);
   
-  --bg-dark: #0a0b0d;
-  --bg-card: rgba(25, 27, 31, 0.7);
-  --text-main: #ffffff;
-  --text-dim: #a0a0a0;
+  --bg-dark: #030406; /* Black base */
+  --bg-card: rgba(10, 17, 40, 0.7); /* Dark blue tinted card */
+  --text-main: #ffffff; /* White */
+  --text-dim: #a0aabf; /* Light gray-blue */
   --glass: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-auto {
-  --primary: #ff3300;
-  --primary-glow: rgba(255, 51, 0, 0.5);
-  --secondary: silver;
+  --primary: #E60000;
+  --primary-glow: rgba(230, 0, 0, 0.5);
+  --secondary: #0A1128;
 }
 
-.theme-look {
-  --primary: #9d00ff;
-  --primary-glow: rgba(157, 0, 255, 0.5);
-  --secondary: #ffd700;
+.theme-moto {
+  --primary: #E60000;
+  --primary-glow: rgba(230, 0, 0, 0.5);
+  --secondary: #0A1128;
 }
 
 * {

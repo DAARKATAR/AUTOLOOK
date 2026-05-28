@@ -37,7 +37,7 @@
   text-align: left;
 }
 .nav-item:hover, .nav-item.active {
-  background: rgba(0, 136, 255, 0.1);
+  background: rgba(230, 0, 0, 0.1);
   color: var(--primary);
 }
 .sidebar-footer {
@@ -101,7 +101,7 @@
   color: white;
   font-family: inherit;
 }
-.form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 10px rgba(0, 136, 255, 0.2); }
+.form-group input:focus, .form-group select:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 10px rgba(230, 0, 0, 0.2); }
 .form-group option {
   background-color: #0a0b0d; 
   color: #ffffff;
@@ -185,8 +185,8 @@ input[type="number"] { -moz-appearance: textfield; }
   display: flex; align-items: center; justify-content: center;
   border-radius: 6px; border: none; cursor: pointer; transition: 0.2s;
 }
-.action-btn.edit { background: rgba(0, 136, 255, 0.15); color: #0088ff; }
-.action-btn.edit:hover { background: #0088ff; color: white; }
+.action-btn.edit { background: rgba(230, 0, 0, 0.15); color: var(--primary); }
+.action-btn.edit:hover { background: var(--primary); color: white; }
 .action-btn.delete { background: rgba(255, 60, 60, 0.15); color: #ff3c3c; }
 .action-btn.delete:hover { background: #ff3c3c; color: white; }
 .text-center { text-align: center; }
