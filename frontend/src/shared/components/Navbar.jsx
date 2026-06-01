@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="container nav-content">
         <Link to="/" className="logo">
           <img src="/icon.png" alt="AutoLook Logo" className="navbar-icon" />
-          <span className="gradient-text">AUTOLOOK</span>
+          <span className="gradient-logo">AUTOLOOK</span>
         </Link>
         <ul className="nav-links">
           {isHome && (

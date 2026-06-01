@@ -2,51 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { authApi } from '../../../shared/services/api';
 
-const MAX_ATTEMPTS = 3;
-const LOCKOUT_TIME = 60000; // 1 minuto de bloqueo
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [attempts, setAttempts] = useState(0);
-  const [isLocked, setIsLocked] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Si llegamos a 3 intentos, bloqueamos
-    if (attempts >= MAX_ATTEMPTS) {
-      setIsLocked(true);
-      setError('Demasiados intentos fallidos. Panel bloqueado por seguridad (1 minuto).');
-      
-      const timer = setTimeout(() => {
-        setIsLocked(false);
-        setAttempts(0);
-        setError('');
-      }, LOCKOUT_TIME);
-
-      return () => clearTimeout(timer);
-    }
-  }, [attempts]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    if (isLocked) return;
 
     setLoading(true);
     setError('');
 
     try {
       await authApi.login(email, password);
-      // Reseteamos intentos si fue exitoso
-      setAttempts(0);
       navigate('/admin');
     } catch (err) {
-      setAttempts(prev => prev + 1);
       setError(err.message === 'Invalid login credentials' 
-        ? `Credenciales incorrectas. Intentos restantes: ${MAX_ATTEMPTS - (attempts + 1)}` 
-        : err.message);
+        ? 'Credenciales incorrectas. Verifica tu email y contraseña.' 
+        : err.message); // Supabase will natively return 'Too many requests' if rate limited
     } finally {
       setLoading(false);
     }
@@ -70,7 +46,6 @@ const Login = () => {
               value={email} 
               onChange={(e) => setEmail(e.target.value)}
               placeholder="admin@empresa.com"
-              disabled={isLocked}
               required 
             />
           </div>
@@ -81,13 +56,12 @@ const Login = () => {
               value={password} 
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              disabled={isLocked}
               required 
             />
           </div>
           
-          <button type="submit" className={`btn w-full ${isLocked ? 'btn-disabled' : 'btn-primary'}`} disabled={loading || isLocked}>
-            {loading ? 'Verificando cifrado...' : (isLocked ? 'Acceso Bloqueado' : 'Ingresar al Dashboard')}
+          <button type="submit" className="btn w-full btn-primary" disabled={loading}>
+            {loading ? 'Verificando cifrado...' : 'Ingresar al Dashboard'}
           </button>
         </form>
         

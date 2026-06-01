@@ -58,7 +58,7 @@ const Landing = () => {
         
         <div className="container hero-content-premium">
           <h1 className="hero-title-premium">
-            <span style={{ display: 'block', fontSize: '0.4em', color: '#00ffcc', letterSpacing: '2px', marginBottom: '10px' }}>
+            <span style={{ display: 'block', fontSize: '0.4em', color: '#ffffff', letterSpacing: '2px', marginBottom: '10px' }}>
               REPUESTOS, LUJOS Y ACCESORIOS PARA
             </span>
             <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
