@@ -23,14 +23,15 @@
 }
 
 .logo {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.8rem;
   display: flex;
   align-items: center;
   gap: 10px;
   line-height: 1;
   text-decoration: none;
+  letter-spacing: 3px;
 }
 
 .navbar-icon {

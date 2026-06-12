@@ -240,7 +240,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 0.5rem;
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-display);
   box-shadow: 0 4px 15px rgba(230, 57, 70, 0.35);
 }
 

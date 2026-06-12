@@ -8,7 +8,7 @@
   display: flex;
   min-height: 100vh;
   background: #F0F2F7;
-  font-family: 'Roboto', sans-serif;
+  font-family: var(--font-body);
 }
 
 /* ---- Sidebar ---- */
@@ -182,7 +182,7 @@
   font-size: 1.8rem;
   font-weight: 800;
   color: var(--secondary);
-  font-family: 'Montserrat', sans-serif;
+  font-family: var(--font-display);
 }
 
 .stat-card.stat-red .stat-label { color: var(--primary); }

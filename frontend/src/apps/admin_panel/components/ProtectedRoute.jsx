@@ -25,7 +25,7 @@ const ProtectedRoute = () => {
           animation: 'spin 0.8s linear infinite'
         }} />
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', fontFamily: 'Roboto, sans-serif' }}>
+        <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.875rem', fontFamily: 'var(--font-body)' }}>
           Verificando sesión...
         </p>
       </div>
