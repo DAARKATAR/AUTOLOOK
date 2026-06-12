@@ -98,44 +98,40 @@ const AdminDashboard = () => {
   return (
     <div className="admin-layout">
       {/* Sidebar */}
-      <aside className="sidebar glass-dark">
-        <div className="sidebar-header" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-          <img src="/icon.png" alt="AutoLook Logo" style={{ width: '70px', height: 'auto', borderRadius: '12px' }} />
-          <h2 className="gradient-text" style={{ margin: 0, fontSize: '1.5rem' }}>AUTOLOOK</h2>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-dim)' }}>Admin Panel</span>
+      <aside className="sidebar">
+        <div className="sidebar-header">
+          <img src="/icon.png" alt="AutoLook Logo" />
+          <h2>AUTOLOOK</h2>
+          <span>Admin Panel</span>
         </div>
         <nav className="sidebar-nav">
-          <button className="nav-item active"><Package size={20} /> Inventario</button>
-
-          <div style={{marginTop: '2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem'}}>
-            <span style={{fontSize: '0.75rem', color: '#666', textTransform: 'uppercase', letterSpacing: '1px', paddingLeft: '1rem', marginBottom: '0.5rem'}}>
-              🌐 Ver Tienda en Vivo
-            </span>
-            <a href="/" target="_blank" rel="noopener noreferrer" className="nav-item" style={{textDecoration: 'none', fontSize: '0.9rem'}}>
-               💎 Ir a la Landing Page
-            </a>
-          </div>
+          <button className="nav-item active"><Package size={18} /> Inventario</button>
+          <div className="nav-section-label">Tienda en Vivo</div>
+          <a href="/" target="_blank" rel="noopener noreferrer" className="nav-item">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Landing Page
+          </a>
         </nav>
         <div className="sidebar-footer">
-          <button onClick={handleLogout} className="btn-logout"><LogOut size={20} /> Cerrar Sesión</button>
+          <button onClick={handleLogout} className="btn-logout"><LogOut size={16} /> Cerrar Sesión</button>
         </div>
       </aside>
 
       {/* Main Content */}
       <main className="main-content">
-        <header className="content-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <header className="content-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <h2>Gestión de Catálogo Premium</h2>
-            <p className="text-dim">Maneja tu inventario aquí. Los cambios se reflejarán instantáneamente.</p>
+            <h2>Gestión de Catálogo</h2>
+            <p className="text-dim">Administra tu inventario. Los cambios se reflejan en tiempo real.</p>
           </div>
           <div style={{ display: 'flex', gap: '1rem' }}>
-            <div className="glass" style={{ padding: '1rem 2rem', borderRadius: '12px', textAlign: 'center' }}>
-              <span style={{ display: 'block', fontSize: '0.8rem', color: '#00ffcc', textTransform: 'uppercase' }}>Total Mostrado</span>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{products.length}</span>
+            <div className="stat-card">
+              <span className="stat-label">Productos</span>
+              <span className="stat-value">{products.length}</span>
             </div>
-            <div className="glass" style={{ padding: '1rem 2rem', borderRadius: '12px', textAlign: 'center' }}>
-              <span style={{ display: 'block', fontSize: '0.8rem', color: '#0088ff', textTransform: 'uppercase' }}>En Stock (Unid.)</span>
-              <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>{products.reduce((acc, curr) => acc + (curr.stock || 0), 0)}</span>
+            <div className="stat-card stat-red">
+              <span className="stat-label">Unidades</span>
+              <span className="stat-value">{products.reduce((acc, curr) => acc + (curr.stock || 0), 0)}</span>
             </div>
           </div>
         </header>

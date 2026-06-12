@@ -49,7 +49,7 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                   <td><img src={prod.imageUrl} alt={prod.name} className="table-img" /></td>
                   <td className="font-bold">
                     <div>{prod.name}</div>
-                    <small style={{color: '#888'}}>{prod.brand}</small>
+                    <small style={{color: '#6B7A9A', fontSize: '0.8rem'}}>{prod.brand}</small>
                   </td>
                   <td>
                     <span className={`badge ${prod.storeType === 'autolook' ? 'badge-auto' : prod.storeType === 'motolook' ? 'badge-moto' : 'badge-general'}`}>

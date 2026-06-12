@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -34,85 +35,6 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <style jsx>{`
-        .navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          z-index: 1000;
-          padding: 1.5rem 0;
-          transition: var(--transition);
-        }
-        .navbar.scrolled {
-          padding: 0.8rem 0;
-          box-shadow: 0 4px 30px rgba(10, 17, 40, 0.1);
-        }
-        .nav-content {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .logo {
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 800;
-          font-size: 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          line-height: 1;
-          text-decoration: none;
-        }
-        .navbar-icon {
-          height: 35px;
-          width: auto;
-          /* filter: invert(1); */
-        }
-        .logo-sub {
-          font-size: 0.7rem;
-          letter-spacing: 4px;
-          color: var(--text-dim);
-        }
-        .nav-links {
-          display: flex;
-          list-style: none;
-          gap: 2.5rem;
-        }
-        .nav-links a {
-          text-decoration: none;
-          color: var(--text-main);
-          font-weight: 600;
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          transition: var(--transition);
-          position: relative;
-        }
-        .nav-links a::after {
-          content: '';
-          position: absolute;
-          bottom: -5px;
-          left: 0;
-          width: 0;
-          height: 2px;
-          background: var(--primary);
-          transition: var(--transition);
-        }
-        .nav-links a:hover {
-          color: var(--primary);
-        }
-        .nav-links a:hover::after {
-          width: 100%;
-        }
-        .btn-sm {
-          padding: 0.6rem 1.5rem;
-          font-size: 0.8rem;
-        }
-        @media (max-width: 768px) {
-          .nav-links {
-            display: none;
-          }
-        }
-      `}</style>
     </nav>
   );
 };
