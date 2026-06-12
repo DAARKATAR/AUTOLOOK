@@ -21,7 +21,7 @@ export const catalogApi = {
   // GET ALL PRODUCTS
   getProducts: async (storeType = 'todos') => {
     let query = supabase
-      .from('productos')
+      .from('products')
       .select('*')
       .order('id', { ascending: false });
 
@@ -39,7 +39,7 @@ export const catalogApi = {
     validateProductData(producto);
     
     const { data, error } = await supabase
-      .from('productos')
+      .from('products')
       .insert([producto])
       .select()
       .single();
@@ -53,7 +53,7 @@ export const catalogApi = {
     validateProductData(updatedFields);
 
     const { data, error } = await supabase
-      .from('productos')
+      .from('products')
       .update(updatedFields)
       .eq('id', id)
       .select()
@@ -95,7 +95,7 @@ export const catalogApi = {
   // DELETE PRODUCT
   deleteProduct: async (id) => {
     const { error } = await supabase
-      .from('productos')
+      .from('products')
       .delete()
       .eq('id', id);
 
