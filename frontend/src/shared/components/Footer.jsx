@@ -7,7 +7,10 @@ const Footer = () => {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <h2 className="gradient-text">AUTOLOOK</h2>
+            <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '1rem' }}>
+              <img src="/icon.png" alt="AutoLook Logo" style={{ height: '35px', filter: 'brightness(0) invert(1)' }} />
+              <span style={{ fontSize: '2rem', fontWeight: '800', letterSpacing: '2px', color: 'white' }}>AUTOLOOK</span>
+            </div>
             <p>Pasión por los motores, compromiso con tu seguridad y el lujo.</p>
           </div>
           
@@ -28,8 +31,8 @@ const Footer = () => {
 
       <style jsx>{`
         .footer {
-          border-top: 1px solid var(--glass-border);
-          background-color: #030406;
+          border-top: 1px solid var(--card-border);
+          background-color: var(--secondary);
           padding-bottom: 2rem;
           padding-top: 4rem;
         }
@@ -45,7 +48,7 @@ const Footer = () => {
           margin-bottom: 1rem;
         }
         .footer-brand p {
-          color: var(--text-dim);
+          color: white;
           max-width: 300px;
           margin-bottom: 2rem;
         }
@@ -62,7 +65,7 @@ const Footer = () => {
         }
         .footer-links a {
           text-decoration: none;
-          color: var(--text-dim);
+          color: white;
           transition: var(--transition);
         }
         .footer-links a:hover {
@@ -74,7 +77,7 @@ const Footer = () => {
           padding-top: 2rem;
           border-top: 1px solid rgba(255, 255, 255, 0.05);
           text-align: center;
-          color: #555;
+          color: white;
           font-size: 0.9rem;
         }
         @media (max-width: 768px) {

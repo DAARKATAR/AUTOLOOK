@@ -58,7 +58,7 @@ const Landing = () => {
         
         <div className="container hero-content-premium">
           <h1 className="hero-title-premium">
-            <span style={{ display: 'block', fontSize: '0.4em', color: '#ffffff', letterSpacing: '2px', marginBottom: '10px' }}>
+            <span style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
               REPUESTOS, LUJOS Y ACCESORIOS PARA
             </span>
             <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
@@ -114,12 +114,12 @@ const Landing = () => {
                 <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 13 #10-04)</strong>.
               </p>
               
-              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>Nuestra Misión</h3>
+              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>Nuestra Misión</h3>
               <p>
                 Ser un aliado confiable para nuestros clientes con instalación profesional de accesorios para vehículos, ofreciendo los mejores productos del mercado al mejor precio y garantizando excelencia y atención personalizada.
               </p>
 
-              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'white' }}>¿Por qué elegirnos?</h3>
+              <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>¿Por qué elegirnos?</h3>
               <p>
                 Prestamos el mejor servicio de instalaciones profesionales limpias, seguras y garantizadas utilizando productos de alta calidad y al mejor precio. Nuestra experiencia de más de 15 años trabajando con concesionarios y particulares nos han convertido en un aliado confiable y recomendado dentro del sector automotriz.
               </p>
@@ -211,21 +211,34 @@ const Landing = () => {
                 </li>
               </ul>
               
-              <h4 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'white' }}>Nuestras Redes</h4>
+              <h4 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--secondary)' }}>Nuestras Redes</h4>
               <div className="social-links-large">
-                <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp">WA</a>
-                <a href="#" className="social-icon-large" title="Instagram (Próximamente)">IG</a>
-                <a href="#" className="social-icon-large" title="Facebook (Próximamente)">FB</a>
-                <a href="#" className="social-icon-large" title="TikTok (Próximamente)">TK</a>
+                <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.01 2.01c-5.51 0-9.99 4.48-9.99 9.99 0 1.76.46 3.44 1.32 4.96L2.01 22l5.17-1.36c1.47.78 3.1 1.19 4.82 1.19 5.51 0 9.99-4.48 9.99-9.99S17.52 2.01 12.01 2.01zM17.3 15.54c-.23.64-1.29 1.18-1.78 1.25-.43.06-.97.12-2.83-.65-2.25-.93-3.7-3.25-3.81-3.4-.11-.15-.91-1.22-.91-2.33s.58-1.65.78-1.87c.21-.23.46-.28.61-.28s.32.01.46.01c.15 0 .34-.06.53.4.21.5.55 1.34.6 1.45.05.11.08.24.01.38-.07.15-.11.24-.23.38-.11.14-.24.31-.34.42-.11.12-.23.25-.1.48.13.23.58.96 1.24 1.55.85.76 1.56 1 1.8 1.11.23.11.37.09.51-.06.14-.15.6-1.02.77-1.37.15-.35.31-.29.53-.21.22.08 1.39.65 1.63.77.24.12.4.18.45.28.05.11.05.62-.18 1.25z" /></svg>
+                </a>
+                <a href="#" className="social-icon-large" title="Instagram (Próximamente)">
+                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="#" className="social-icon-large" title="Facebook (Próximamente)">
+                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                </a>
+                <a href="#" className="social-icon-large" title="TikTok (Próximamente)">
+                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                </a>
               </div>
             </div>
             
-            <div className="maps-container">
-              <div className="maps-placeholder">
-                <span style={{ fontSize: '3rem', marginBottom: '1rem' }}>🗺️</span>
-                <h3>Espacio para Google Maps</h3>
-                <p>Aquí se integrará el mapa interactivo de la ubicación exacta.</p>
-              </div>
+            <div className="maps-container" style={{ width: '100%', minHeight: '400px', borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--card-shadow)' }}>
+              <iframe 
+                src="https://www.google.com/maps?q=Calle+13+%2310-04,+Funza,+Colombia&output=embed" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0, minHeight: '400px' }} 
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Autolook Funza Location"
+              ></iframe>
             </div>
           </div>
           </div>

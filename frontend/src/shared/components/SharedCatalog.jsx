@@ -85,13 +85,13 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
 
       <main className={`catalog-content ${hideLayout ? '' : 'section-padding'}`} id="catalog-section">
         <div className="container">
-          <div className="catalog-header text-center mb-5">
-            <h2 className="neon-text accent-color" style={{ fontSize: '2.5rem', fontWeight: '800' }}>{title}</h2>
-            <p className="text-dim mt-2">{subtitle}</p>
+          <div className="catalog-header text-center" style={{ marginBottom: '3rem' }}>
+            <h2 className="neon-text accent-color" style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '1rem' }}>{title}</h2>
+            <p className="text-dim mt-2" style={{ marginBottom: '2rem' }}>{subtitle}</p>
           </div>
 
           {/* Filter Mode Toggle */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <button 
               className={`btn ${filterMode === 'category' ? 'btn-primary' : 'btn-outline'}`}
               onClick={() => handleModeToggle('category')}
@@ -109,7 +109,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
           </div>
 
           {/* Filters */}
-          <div className="filters-container glass mb-4" style={{ justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div className="filters-container glass" style={{ justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '4rem', padding: '1.5rem', borderRadius: '16px' }}>
             {activeFilters.map(filterOption => (
               <button 
                 key={filterOption} 

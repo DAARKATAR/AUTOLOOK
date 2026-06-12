@@ -16,7 +16,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled glass-dark' : ''}`}>
+    <nav className={`navbar ${scrolled ? 'scrolled glass' : ''}`}>
       <div className="container nav-content">
         <Link to="/" className="logo">
           <img src="/icon.png" alt="AutoLook Logo" className="navbar-icon" />
@@ -46,7 +46,7 @@ const Navbar = () => {
         }
         .navbar.scrolled {
           padding: 0.8rem 0;
-          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 4px 30px rgba(10, 17, 40, 0.1);
         }
         .nav-content {
           display: flex;
@@ -66,8 +66,7 @@ const Navbar = () => {
         .navbar-icon {
           height: 35px;
           width: auto;
-          mix-blend-mode: screen; /* Elimina fondos oscuros */
-          /* filter: brightness(0) invert(1); /* Descomenta esto si el fondo era blanco para volver el logo blanco puro */
+          /* filter: invert(1); */
         }
         .logo-sub {
           font-size: 0.7rem;

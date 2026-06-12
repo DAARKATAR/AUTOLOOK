@@ -1,30 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap');
 
 :root {
-  /* Brand Identity: Autolook Colombia */
-  --primary: #E60000; /* Vibrant Red */
-  --primary-glow: rgba(230, 0, 0, 0.5);
-  --secondary: #0A1128; /* Dark Blue */
-  --secondary-glow: rgba(10, 17, 40, 0.5);
+  /* Brand Identity: Autolook Colombia - Premium Light Theme */
+  --primary: #E63946; /* Vibrant Racing Red */
+  --primary-glow: rgba(230, 57, 70, 0.3);
+  --secondary: #0A1128; /* Very Dark Navy Blue */
+  --secondary-light: #1C2541;
   
-  --bg-dark: #030406; /* Black base */
-  --bg-card: rgba(10, 17, 40, 0.7); /* Dark blue tinted card */
-  --text-main: #ffffff; /* White */
-  --text-dim: #a0aabf; /* Light gray-blue */
-  --glass: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
+  --bg-main: #FFFFFF; /* Pure White */
+  --bg-alt: #F8F9FA; /* Light Gray for alternating sections */
+  --bg-card: #FFFFFF; /* White card */
+  
+  --text-main: #0A1128; /* Dark Navy instead of pure black */
+  --text-dim: #0A1128; /* All text must be Dark Blue per user request */
+  
+  --card-shadow: 0 10px 30px rgba(10, 17, 40, 0.08);
+  --card-border: rgba(10, 17, 40, 0.05);
+  
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .theme-auto {
-  --primary: #E60000;
-  --primary-glow: rgba(230, 0, 0, 0.5);
+  --primary: #E63946;
+  --primary-glow: rgba(230, 57, 70, 0.3);
   --secondary: #0A1128;
 }
 
 .theme-moto {
-  --primary: #E60000;
-  --primary-glow: rgba(230, 0, 0, 0.5);
+  --primary: #D00000;
+  --primary-glow: rgba(208, 0, 0, 0.3);
   --secondary: #0A1128;
 }
 
@@ -40,7 +44,7 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: var(--bg-dark);
+  background-color: var(--bg-main);
   color: var(--text-main);
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -53,20 +57,19 @@ h1, h2, h3, h4 {
   letter-spacing: 1px;
 }
 
-/* Glassmorphism Utilities */
+/* Premium White Cards (replaces Glassmorphism) */
 .glass {
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
   border-radius: 16px;
+  box-shadow: var(--card-shadow);
 }
 
 .glass-dark {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border);
+  background: var(--secondary);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 16px;
 }
 
 /* Animations */
@@ -81,12 +84,6 @@ h1, h2, h3, h4 {
   }
 }
 
-@keyframes glow {
-  0% { box-shadow: 0 0 5px var(--primary-glow); }
-  50% { box-shadow: 0 0 20px var(--primary-glow); }
-  100% { box-shadow: 0 0 5px var(--primary-glow); }
-}
-
 .animate-fade-in {
   animation: fadeInUp 0.8s ease-out forwards;
 }
@@ -97,11 +94,11 @@ h1, h2, h3, h4 {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-dark);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #c1c1c1;
   border-radius: 4px;
 }
 
@@ -143,6 +140,7 @@ h1, h2, h3, h4 {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px var(--primary-glow);
   filter: brightness(1.1);
+  color: white;
 }
 
 .btn-outline {
@@ -156,20 +154,20 @@ h1, h2, h3, h4 {
   color: white;
 }
 
+/* Updated Text Effects */
 .neon-text {
-  color: var(--primary);
-  text-shadow: 0 0 10px var(--primary-glow);
+  color: var(--secondary);
+  font-weight: 900;
 }
 
 .gradient-text {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  background: linear-gradient(90deg, var(--secondary), var(--primary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-logo {
-  background: linear-gradient(90deg, #E60000 0%, #000000 100%);
+  background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.5));
 }
