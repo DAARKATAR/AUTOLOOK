@@ -18,59 +18,53 @@ const validateProductData = (data) => {
 };
 
 export const catalogApi = {
-  // GET ALL PRODUCTS (CON FILTRO DESDE BACKEND)
+  // GET ALL PRODUCTS
   getProducts: async (storeType = 'todos') => {
     let query = supabase
-      .from('products')
+      .from('productos')
       .select('*')
       .order('id', { ascending: false });
-    
+
     if (storeType !== 'todos') {
       query = query.eq('storeType', storeType);
     }
-    
+
     const { data, error } = await query;
-    
-    if (error) {
-      console.error('Error fetching products:', error);
-      return [];
-    }
+    if (error) throw error;
     return data;
   },
 
   // CREATE PRODUCT
   addProduct: async (producto) => {
     validateProductData(producto);
-    // Eliminamos el ID para que Supabase lo genere automáticamente (identity/uuid)
-    const { id, ...productoSinId } = producto;
     
     const { data, error } = await supabase
-      .from('products')
-      .insert([productoSinId])
-      .select();
-      
-    if (error) throw new Error(error.message);
-    return data[0];
+      .from('productos')
+      .insert([producto])
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   },
 
   // UPDATE PRODUCT
   updateProduct: async (id, updatedFields) => {
     validateProductData(updatedFields);
-    const { id: _, ...fieldsToUpdate } = updatedFields;
-    
+
     const { data, error } = await supabase
-      .from('products')
-      .update(fieldsToUpdate)
+      .from('productos')
+      .update(updatedFields)
       .eq('id', id)
-      .select();
-      
-    if (error) throw new Error(error.message);
-    return data[0];
+      .select()
+      .single();
+
+    if (error) throw error;
+    return data;
   },
 
   // UPLOAD IMAGE TO SUPABASE STORAGE
   uploadImage: async (file) => {
-    // Validación de seguridad para archivos
     const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
       throw new Error('Tipo de archivo no permitido. Solo se aceptan imágenes (JPG, PNG, WEBP).');
@@ -80,56 +74,50 @@ export const catalogApi = {
       throw new Error('La imagen es demasiado grande. Máximo 5MB permitidos.');
     }
 
-    const fileExt = file.name.split('.').pop().toLowerCase();
-    const allowedExts = ['jpg', 'jpeg', 'png', 'webp'];
-    if (!allowedExts.includes(fileExt)) {
-      throw new Error('Extensión de archivo inválida.');
-    }
-
-    const fileName = `${crypto.randomUUID()}.${fileExt}`;
+    // Generate unique file name
+    const fileExt = file.name.split('.').pop();
+    const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
     const filePath = `public/${fileName}`;
 
     const { error: uploadError } = await supabase.storage
-      .from('product-images')
+      .from('catalogo')
       .upload(filePath, file);
 
-    if (uploadError) {
-      throw new Error('Error al subir la imagen: ' + uploadError.message);
-    }
+    if (uploadError) throw uploadError;
 
-    const { data } = supabase.storage
-      .from('product-images')
+    const { data: publicUrlData } = supabase.storage
+      .from('catalogo')
       .getPublicUrl(filePath);
 
-    return data.publicUrl;
+    return publicUrlData.publicUrl;
   },
 
   // DELETE PRODUCT
   deleteProduct: async (id) => {
     const { error } = await supabase
-      .from('products')
+      .from('productos')
       .delete()
       .eq('id', id);
-      
-    if (error) throw new Error(error.message);
+
+    if (error) throw error;
     return true;
   }
 };
 
 export const authApi = {
-  // LOGIN CON SUPABASE AUTH
+  // LOGIN SUPABASE
   login: async (email, password) => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    
-    if (error) throw new Error(error.message);
-    
+    if (error) throw error;
     return { success: true, user: data.user };
   },
   
+  // LOGOUT SUPABASE
   logout: async () => {
-    await supabase.auth.signOut();
+    const { error } = await supabase.auth.signOut();
+    if (error) throw error;
   }
 };
