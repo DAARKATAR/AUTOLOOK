@@ -64,7 +64,7 @@ const Landing = () => {
     <div className="unified-landing">
       <SeoHead 
         title="Repuestos, Lujos y Accesorios" 
-        description="El mejor catálogo de repuestos, lujos y accesorios de alto rendimiento para autos y motos en Funza. Todas las marcas: Pirelli, Brembo y más."
+        description="Catálogo premium de repuestos, lujos y accesorios para autos, motos y equipos GPS en Funza. Marcas reconocidas como Pirelli y Brembo."
         schema={localBusinessSchema} 
       />
       <Navbar />
@@ -90,10 +90,10 @@ const Landing = () => {
             <span style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
               REPUESTOS, LUJOS Y ACCESORIOS PARA
             </span>
-            <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
+            <span className="hero-title-highlight">AUTOS Y MOTOS</span>
           </h1>
           <p className="hero-subtitle-premium">
-            Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles.
+            Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y equipos GPS/tecnología para motos y automóviles.
           </p>
           
           <div className="hero-cards-grid animate-on-scroll">
@@ -112,6 +112,15 @@ const Landing = () => {
                 <h3>AUTOMÓVILES</h3>
                 <p>Rines • Aerodinámica • Iluminación</p>
                 <span className="btn-glow auto-glow">Ver Catálogo 🚗</span>
+              </div>
+            </div>
+
+              <div className="luxury-card gps-card animate-float" onClick={() => handleSelectCatalog('gpslook')}>
+              <div className="card-overlay"></div>
+              <div className="card-content">
+                <h3>TECNOLOGÍA</h3>
+                <p>GPS • Sensores • Radios</p>
+                <span className="btn-glow">Catálogo Oculto 📡</span>
               </div>
             </div>
           </div>
@@ -201,13 +210,22 @@ const Landing = () => {
               categories={['Todos', 'Aerodinámica', 'Rines', 'Performance', 'Iluminación']} 
               hideLayout={true}
             />
-          ) : (
+          ) : selectedCatalog === 'motolook' ? (
             <SharedCatalog 
               storeType="motolook"
               themeClass="theme-moto"
               title="COLECCIÓN MOTOLOOK"
               subtitle="Accesorios y repuestos para dominar el asfalto."
               categories={['Todos', 'Repuestos', 'Lujos', 'Seguridad', 'Accesorios']} 
+              hideLayout={true}
+            />
+          ) : (
+            <SharedCatalog 
+              storeType="gpslook"
+              themeClass="theme-gps"
+              title="COLECCIÓN GPSLOOK"
+              subtitle="Equipos GPS, sensores y radios para tu seguridad y conectividad."
+              categories={['Todos', 'GPS', 'Sensores', 'Radios', 'Walkie Talkies']} 
               hideLayout={true}
             />
           )}
