@@ -115,6 +115,35 @@ export const catalogApi = {
 
   // DELETE PRODUCT
   deleteProduct: async (id) => {
+    // 1. Obtener la URL de la imagen antes de borrar el producto
+    const { data: product, error: fetchError } = await supabase
+      .from('products')
+      .select('imageUrl')
+      .eq('id', id)
+      .single();
+      
+    if (fetchError && fetchError.code !== 'PGRST116') {
+      throw fetchError;
+    }
+
+    // 2. Si tiene imagen, eliminarla del Storage
+    if (product && product.imageUrl) {
+      // Extraer el path interno (ej: "public/archivo.png") de la URL completa
+      const urlParts = product.imageUrl.split('/catalogo/');
+      if (urlParts.length > 1) {
+        const filePath = urlParts[1];
+        // Borrar imagen del bucket (no arrojamos error si falla, solo registramos, para no bloquear el borrado del producto)
+        const { error: storageError } = await supabase.storage
+          .from('catalogo')
+          .remove([filePath]);
+          
+        if (storageError) {
+          console.warn('No se pudo borrar la imagen del storage:', storageError);
+        }
+      }
+    }
+
+    // 3. Borrar el registro de la base de datos
     const { error } = await supabase
       .from('products')
       .delete()

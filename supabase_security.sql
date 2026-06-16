@@ -64,17 +64,17 @@ ON storage.objects FOR SELECT
 TO public
 USING (bucket_id = 'catalogo');
 
--- Inserción solo para autenticados
+-- Inserción solo para admin
 CREATE POLICY "Admin Upload Access to Catalogo"
 ON storage.objects FOR INSERT
 TO authenticated
-WITH CHECK (bucket_id = 'catalogo');
+WITH CHECK (bucket_id = 'catalogo' AND (auth.jwt() ->> 'email'::text) = 'admin@autolook.com');
 
--- Borrado solo para autenticados
+-- Borrado solo para admin
 CREATE POLICY "Admin Delete Access to Catalogo"
 ON storage.objects FOR DELETE
 TO authenticated
-USING (bucket_id = 'catalogo');
+USING (bucket_id = 'catalogo' AND (auth.jwt() ->> 'email'::text) = 'admin@autolook.com');
 
 -- ==========================================
 -- RECOMENDACIÓN DE REGISTRO
