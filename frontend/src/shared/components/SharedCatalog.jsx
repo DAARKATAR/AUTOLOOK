@@ -96,7 +96,8 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
             <p className="text-dim mt-2" style={{ marginBottom: '2rem' }}>{subtitle}</p>
           </div>
 
-          <div style={{ display: 'none', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          {/* Filter Mode Toggle (Oculto temporalmente) */}
+          <div style={{ display: 'none', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
             <button 
               className={`btn ${filterMode === 'category' ? 'btn-primary' : 'btn-outline'}`}
               onClick={() => handleModeToggle('category')}
@@ -113,6 +114,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
             </button>
           </div>
 
+          {/* Filters (Oculto temporalmente) */}
           <div className="filters-container glass" style={{ display: 'none', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '4rem', padding: '1.5rem', borderRadius: '16px' }}>
             {activeFilters.map(filterOption => (
               <button 

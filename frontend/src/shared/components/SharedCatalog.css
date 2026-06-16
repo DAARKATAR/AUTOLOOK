@@ -25,32 +25,12 @@
 
 .theme-auto .accent-color { color: var(--primary); }
 
-.theme-gps {
-  --primary: #F2C94C;
-  --primary-glow: rgba(242, 201, 76, 0.25);
-  --secondary: #0a1128;
-  background-color: var(--bg-alt);
-}
-
-.theme-gps .accent-color { color: var(--primary); }
-
 .filters-container {
   display: flex;
   justify-content: center;
   gap: 1rem;
   padding: 1rem;
   flex-wrap: wrap;
-}
-
-.btn-outline {
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  background: transparent;
-}
-
-.btn-outline:hover {
-  background: var(--primary);
-  color: #fff;
 }
 
 .filter-btn {
