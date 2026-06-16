@@ -20,6 +20,7 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
             <button className={`tab-btn ${activeTab === 'todos' ? 'active' : ''}`} onClick={() => setActiveTab('todos')}>Todas</button>
             <button className={`tab-btn ${activeTab === 'motolook' ? 'active' : ''}`} onClick={() => setActiveTab('motolook')}>MotoLook</button>
             <button className={`tab-btn ${activeTab === 'autolook' ? 'active' : ''}`} onClick={() => setActiveTab('autolook')}>AutoLook</button>
+            <button className={`tab-btn ${activeTab === 'techlook' ? 'active' : ''}`} onClick={() => setActiveTab('techlook')}>TechLook</button>
           </div>
         </div>
         <button className="btn-icon action-btn refresh-btn" onClick={() => fetchProducts()} title="Actualizar inventario" style={{ color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', padding: '0.5rem', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -54,8 +55,8 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                     <small style={{color: '#6B7A9A', fontSize: '0.8rem'}}>{prod.brand}</small>
                   </td>
                   <td>
-                    <span className={`badge ${prod.storeType === 'autolook' ? 'badge-auto' : prod.storeType === 'motolook' ? 'badge-moto' : 'badge-general'}`}>
-                      {prod.storeType === 'autolook' ? 'Carro' : prod.storeType === 'motolook' ? 'Moto' : 'Universal'}
+                    <span className={`badge ${prod.storeType === 'autolook' ? 'badge-auto' : prod.storeType === 'motolook' ? 'badge-moto' : prod.storeType === 'techlook' ? 'badge-moto' : 'badge-general'}`}>
+                      {prod.storeType === 'autolook' ? 'Carro' : prod.storeType === 'motolook' ? 'Moto' : prod.storeType === 'techlook' ? 'GPS/Tech' : 'Universal'}
                     </span>
                   </td>
                   <td><span className="badge">{prod.category}</span></td>
