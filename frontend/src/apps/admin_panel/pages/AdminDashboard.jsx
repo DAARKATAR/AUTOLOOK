@@ -18,41 +18,13 @@ const AdminDashboard = () => {
   const [formData, setFormData] = useState({
     id: null,
     name: '',
-    storeType: 'motolook', // motolook, autolook, general
+    storeType: 'motolook',
     category: 'Repuestos',
     brand: '', 
     price: '',
     stock: '',
     imageUrl: ''
   });
-
-  useEffect(() => {
-    // TEMPORIZADOR DE INACTIVIDAD (30 minutos = 1800000 ms)
-    let timeoutId;
-    
-    const resetTimer = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        alert('Sesión cerrada por inactividad.');
-        handleLogout();
-      }, 1800000);
-    };
-
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keydown', resetTimer);
-    window.addEventListener('click', resetTimer);
-    window.addEventListener('scroll', resetTimer);
-
-    resetTimer();
-
-    return () => {
-      clearTimeout(timeoutId);
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
-      window.removeEventListener('click', resetTimer);
-      window.removeEventListener('scroll', resetTimer);
-    };
-  }, []);
 
   // Fetching data with pagination/filtering from Backend
   useEffect(() => {
