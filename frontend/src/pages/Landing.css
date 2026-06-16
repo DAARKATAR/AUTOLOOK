@@ -100,10 +100,7 @@
   text-transform: uppercase;
   letter-spacing: -2px;
   color: var(--secondary);
-  text-shadow: 
-    0 0 8px rgba(255, 255, 255, 0.6), 
-    0 0 15px rgba(255, 255, 255, 0.4), 
-    0 0 25px rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6)) drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
 }
 
 .hero-subtitle-premium {
