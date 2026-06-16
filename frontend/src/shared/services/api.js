@@ -38,9 +38,12 @@ export const catalogApi = {
   addProduct: async (producto) => {
     validateProductData(producto);
     
+    // Eliminar 'id' para que Postgres lo auto-genere y no falle con "violates not-null"
+    const { id, ...dataToInsert } = producto;
+    
     const { data, error } = await supabase
       .from('products')
-      .insert([producto])
+      .insert([dataToInsert])
       .select()
       .single();
 
