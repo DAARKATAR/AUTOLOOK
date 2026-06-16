@@ -434,6 +434,24 @@
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+  
+  .contact-info-panel {
+    padding: 1.5rem;
+  }
+  
+  .contact-info-panel h3 {
+    text-align: center;
+  }
+  
+  .contact-list li {
+    font-size: 1rem;
+    align-items: flex-start;
+  }
+  
+  .social-links-large {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .contact-info-panel {
@@ -521,9 +539,29 @@
   background: rgba(10, 17, 40, 0.02);
 }
 
-/* Ajustes móviles para la Bottom Navbar */
+.maps-container {
+  width: 100%;
+  min-height: 400px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  display: flex;
+}
+
+.maps-container iframe {
+  border: 0;
+  width: 100%;
+  min-height: 400px;
+  flex-grow: 1;
+}
+
+/* Ajustes móviles para la Bottom Navbar y Layout General */
 @media (max-width: 768px) {
   .unified-landing {
     padding-bottom: 70px;
+  }
+  
+  .maps-container, .maps-container iframe {
+    min-height: 280px;
   }
 }

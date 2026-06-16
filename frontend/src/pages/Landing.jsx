@@ -257,12 +257,11 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="maps-container" style={{ width: '100%', minHeight: '400px', borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--card-shadow)' }}>
+            <div className="maps-container">
               <iframe 
                 src="https://www.google.com/maps?q=Calle+13+%2310-04,+Funza,+Colombia&output=embed" 
                 width="100%" 
                 height="100%" 
-                style={{ border: 0, minHeight: '400px' }} 
                 allowFullScreen="" 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
