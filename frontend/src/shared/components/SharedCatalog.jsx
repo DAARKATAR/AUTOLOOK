@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { SeoHead } from './SeoHead';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { catalogApi } from '../services/api';
@@ -81,6 +82,11 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
 
   return (
     <div className={`catalog-page ${themeClass}`} style={hideLayout ? { minHeight: 'auto', paddingTop: '2rem', paddingBottom: '2rem' } : {}}>
+      <SeoHead 
+        title={title} 
+        description={subtitle} 
+        keywords={`repuestos, lujos, accesorios, ${storeType || 'autos y motos'}, ${categories ? categories.join(', ') : ''}`} 
+      />
       {!hideLayout && <Navbar />}
 
       <main className={`catalog-content ${hideLayout ? '' : 'section-padding'}`} id="catalog-section">

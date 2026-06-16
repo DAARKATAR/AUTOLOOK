@@ -5,7 +5,8 @@ export const SeoHead = ({
   description, 
   keywords, 
   ogImage = 'https://images.unsplash.com/photo-1549557451-b847ae91b107?q=80&w=1200', 
-  url = 'https://tudominio.com/' 
+  url = 'https://tudominio.com/',
+  schema
 }) => {
   const siteTitle = title ? `${title} | AutoLook & MotoLook` : 'AutoLook & MotoLook | Repuestos y Lujos';
   
@@ -33,6 +34,13 @@ export const SeoHead = ({
       <meta property="twitter:title" content={siteTitle} />
       {description && <meta property="twitter:description" content={description} />}
       <meta property="twitter:image" content={ogImage} />
+
+      {/* JSON-LD Schema Markup */}
+      {schema && (
+        <script type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      )}
     </Helmet>
   );
 };

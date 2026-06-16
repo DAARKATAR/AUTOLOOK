@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { SeoHead } from '../shared/components/SeoHead';
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
@@ -36,8 +37,32 @@ const Landing = () => {
     }, 100);
   };
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "AutoPartsStore",
+    "name": "AutoLook & MotoLook",
+    "image": "https://tudominio.com/quienes-somos.jpg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle 13 #10-04",
+      "addressLocality": "Funza",
+      "addressRegion": "Cundinamarca",
+      "addressCountry": "CO"
+    },
+    "telephone": "+573018265636",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "08:00",
+        "closes": "18:00"
+      }
+    ]
+  };
+
   return (
     <div className="unified-landing">
+      <SeoHead schema={localBusinessSchema} />
       <Navbar />
       
       {/* Hero Section con Video Background */}
@@ -213,16 +238,16 @@ const Landing = () => {
               
               <h4 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--secondary)' }}>Nuestras Redes</h4>
               <div className="social-links-large">
-                <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp">
+                <a href="https://wa.me/573018265636" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp" aria-label="Contactar por WhatsApp">
                   <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.01 2.01c-5.51 0-9.99 4.48-9.99 9.99 0 1.76.46 3.44 1.32 4.96L2.01 22l5.17-1.36c1.47.78 3.1 1.19 4.82 1.19 5.51 0 9.99-4.48 9.99-9.99S17.52 2.01 12.01 2.01zM17.3 15.54c-.23.64-1.29 1.18-1.78 1.25-.43.06-.97.12-2.83-.65-2.25-.93-3.7-3.25-3.81-3.4-.11-.15-.91-1.22-.91-2.33s.58-1.65.78-1.87c.21-.23.46-.28.61-.28s.32.01.46.01c.15 0 .34-.06.53.4.21.5.55 1.34.6 1.45.05.11.08.24.01.38-.07.15-.11.24-.23.38-.11.14-.24.31-.34.42-.11.12-.23.25-.1.48.13.23.58.96 1.24 1.55.85.76 1.56 1 1.8 1.11.23.11.37.09.51-.06.14-.15.6-1.02.77-1.37.15-.35.31-.29.53-.21.22.08 1.39.65 1.63.77.24.12.4.18.45.28.05.11.05.62-.18 1.25z" /></svg>
                 </a>
-                <a href="#" className="social-icon-large" title="Instagram (Próximamente)">
+                <a href="#!" onClick={(e) => e.preventDefault()} className="social-icon-large" title="Instagram (Próximamente)" aria-label="Perfil de Instagram (Próximamente)">
                   <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
                 </a>
-                <a href="#" className="social-icon-large" title="Facebook (Próximamente)">
+                <a href="#!" onClick={(e) => e.preventDefault()} className="social-icon-large" title="Facebook (Próximamente)" aria-label="Perfil de Facebook (Próximamente)">
                   <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
                 </a>
-                <a href="#" className="social-icon-large" title="TikTok (Próximamente)">
+                <a href="#!" onClick={(e) => e.preventDefault()} className="social-icon-large" title="TikTok (Próximamente)" aria-label="Perfil de TikTok (Próximamente)">
                   <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
                 </a>
               </div>
