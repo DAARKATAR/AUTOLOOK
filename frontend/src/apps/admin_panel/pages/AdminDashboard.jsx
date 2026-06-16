@@ -59,7 +59,7 @@ const AdminDashboard = () => {
     fetchProducts();
   }, [activeTab]);
 
-  const fetchProducts = async () => {
+  async function fetchProducts() {
     setLoading(true);
     try {
       const data = await catalogApi.getProducts(activeTab);
@@ -69,12 +69,12 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
-  const handleLogout = () => {
+  function handleLogout() {
     authApi.logout();
     navigate('/admin-acceso-seguro');
-  };
+  }
 
   const editProduct = (prod) => {
     setFormData({

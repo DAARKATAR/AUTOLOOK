@@ -27,7 +27,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
     return () => window.removeEventListener('storage', handleStorageChange);
   }, [storeType]);
 
-  const fetchCatalog = async () => {
+  async function fetchCatalog() {
     setLoading(true);
     try {
       const data = await catalogApi.getProducts();
@@ -42,7 +42,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleFilter = (filterValue, mode = filterMode) => {
     setActiveCategory(filterValue);
