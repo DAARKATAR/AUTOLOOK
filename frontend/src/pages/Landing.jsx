@@ -223,7 +223,7 @@ const Landing = () => {
           ) : selectedCatalog === 'techlook' ? (
             <SharedCatalog 
               storeType="techlook"
-              themeClass="theme-moto"
+              themeClass="theme-tech"
               title="COLECCIÓN TECNOLOGÍA"
               subtitle="GPS, sensores y comunicación de alta precisión."
               categories={['Todos', 'GPS y Rastreo', 'Sensores', 'Radios y Comunicación', 'Otros']} 
