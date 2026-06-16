@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Home, Wrench, Package, MapPin } from 'lucide-react';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -35,6 +36,31 @@ const Navbar = () => {
         </ul>
       </div>
 
+      {/* Mobile Bottom Navigation (Only visible on max-width 768px via CSS) */}
+      {isHome && (
+        <div className="mobile-bottom-nav">
+          <a href="#home" className="mobile-nav-item">
+            <Home size={22} />
+            <span>Inicio</span>
+          </a>
+          <a href="#services" className="mobile-nav-item">
+            <Wrench size={22} />
+            <span>Servicios</span>
+          </a>
+          <a href="#catalog-section" className="mobile-nav-item" onClick={(e) => { 
+            if(!document.getElementById('catalog-section')) { 
+              document.getElementById('home')?.scrollIntoView(); 
+            } 
+          }}>
+            <Package size={22} />
+            <span>Catálogo</span>
+          </a>
+          <a href="#location" className="mobile-nav-item">
+            <MapPin size={22} />
+            <span>Ubicación</span>
+          </a>
+        </div>
+      )}
     </nav>
   );
 };

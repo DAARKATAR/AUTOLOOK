@@ -520,3 +520,10 @@
   border-color: var(--secondary);
   background: rgba(10, 17, 40, 0.02);
 }
+
+/* Ajustes móviles para la Bottom Navbar */
+@media (max-width: 768px) {
+  .unified-landing {
+    padding-bottom: 70px;
+  }
+}

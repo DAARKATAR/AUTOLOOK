@@ -85,8 +85,57 @@
   font-size: 0.8rem;
 }
 
+/* Ocultar barra inferior en escritorio */
+.mobile-bottom-nav {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .nav-links {
     display: none;
   }
+  
+  /* Centrar logo en móvil */
+  .nav-content {
+    justify-content: center;
+  }
+  
+  /* Mostrar y estilizar barra inferior */
+  .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 0.8rem 0 1rem 0; /* Un poco más de padding abajo para el home indicator de iOS */
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    font-weight: 600;
+    gap: 5px;
+    transition: all 0.2s ease;
+    width: 25%;
+  }
+  
+  .mobile-nav-item:active {
+    color: var(--primary);
+    transform: scale(0.95);
+  }
+  
+  /* Ocultar la barra superior original si queremos (opcional), por ahora la dejamos para el logo */
 }
