@@ -4,6 +4,7 @@ import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
 import { Wrench, ShieldCheck, Award } from 'lucide-react';
+import gpsBg from '../assets/gps-bg.jpg';
 import './Landing.css';
 
 const Landing = () => {
@@ -116,7 +117,7 @@ const Landing = () => {
             </div>
 
             {/* Catálogo Tecnología (GPS, Sensores, Radios) */}
-            <div className="luxury-card tech-card animate-float" onClick={() => handleSelectCatalog('techlook')}>
+            <div className="luxury-card tech-card animate-float" style={{ backgroundImage: `url(${gpsBg})` }} onClick={() => handleSelectCatalog('techlook')}>
               <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>TECNOLOGÍA Y GPS</h3>
