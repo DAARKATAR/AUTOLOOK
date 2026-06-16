@@ -100,14 +100,17 @@
   text-transform: uppercase;
   letter-spacing: -2px;
   color: var(--secondary);
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.25);
+  text-shadow: 
+    0 0 8px rgba(255, 255, 255, 0.6), 
+    0 0 15px rgba(255, 255, 255, 0.4), 
+    0 0 25px rgba(255, 255, 255, 0.2);
 }
 
 .hero-subtitle-premium {
   font-size: 1.2rem;
   color: #ffffff;
   max-width: 650px;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto 8rem auto;
   line-height: 1.6;
 }
 
