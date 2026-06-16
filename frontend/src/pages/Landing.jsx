@@ -87,10 +87,10 @@ const Landing = () => {
         
         <div className="container hero-content-premium">
           <h1 className="hero-title-premium">
-            <span className="subtle-yellow-glow" style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
+            <span style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
               REPUESTOS, LUJOS Y ACCESORIOS PARA
             </span>
-            <span className="text-transparent bg-clip-text gradient-neon" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 204, 0, 0.4))' }}>AUTOS Y MOTOS</span>
+            <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
           </h1>
           <p className="hero-subtitle-premium">
             Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles.
@@ -115,8 +115,8 @@ const Landing = () => {
               </div>
             </div>
 
-            {/* Catálogo oculto (GPS, Sensores, Radios) */}
-            <div className="luxury-card tech-card animate-float" style={{ display: 'none' }} onClick={() => handleSelectCatalog('techlook')}>
+            {/* Catálogo Tecnología (GPS, Sensores, Radios) */}
+            <div className="luxury-card tech-card animate-float" onClick={() => handleSelectCatalog('techlook')}>
               <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>TECNOLOGÍA Y GPS</h3>

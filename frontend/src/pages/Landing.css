@@ -100,8 +100,8 @@
   text-transform: uppercase;
   letter-spacing: -2px;
   color: var(--secondary);
-  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  -webkit-text-stroke: 1px rgba(255, 215, 0, 0.6);
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .hero-subtitle-premium {
@@ -218,10 +218,6 @@
 .moto-card:hover .btn-glow { background: var(--primary); transform: scale(1.05); }
 .auto-card:hover .auto-glow { background: var(--secondary); transform: scale(1.05); }
 .tech-card:hover .tech-glow { background: #e67e22; transform: scale(1.05); }
-
-.subtle-yellow-glow {
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
-}
 
 /* Brands Marquee */
 .brands-marquee {
