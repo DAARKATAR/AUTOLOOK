@@ -17,6 +17,7 @@ export const SeoHead = ({
       <meta name="title" content={siteTitle} />
       {description && <meta name="description" content={description} />}
       {keywords && <meta name="keywords" content={keywords} />}
+      <meta name="publisher" content="AutoLook Colombia" />
       
       {/* Canonical Link */}
       <link rel="canonical" href={url} />

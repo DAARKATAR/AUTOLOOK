@@ -62,7 +62,11 @@ const Landing = () => {
 
   return (
     <div className="unified-landing">
-      <SeoHead schema={localBusinessSchema} />
+      <SeoHead 
+        title="Repuestos, Lujos y Accesorios" 
+        description="El mejor catálogo de repuestos, lujos y accesorios de alto rendimiento para autos y motos en Funza. Todas las marcas: Pirelli, Brembo y más."
+        schema={localBusinessSchema} 
+      />
       <Navbar />
       
       {/* Hero Section con Video Background */}
