@@ -1,7 +1,6 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../../shared/context/AuthContext';
-import AdminGateway from './AdminGateway';
 
 const ProtectedRoute = () => {
   const { session, loading } = useAuth();
@@ -33,17 +32,13 @@ const ProtectedRoute = () => {
     );
   }
 
-  // If not authenticated, redirect to login page
+  // Si no hay sesión, redirige al login
   if (!session) {
     return <Navigate to="/admin-acceso-seguro" replace />;
   }
 
-  // If authenticated, render the child routes wrapped in AdminGateway (token verification)
-  return (
-    <AdminGateway>
-      <Outlet />
-    </AdminGateway>
-  );
+  // Sesión activa → acceso directo al panel
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
