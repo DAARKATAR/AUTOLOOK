@@ -1,6 +1,7 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../../shared/context/AuthContext';
+import AdminGateway from './AdminGateway';
 
 const ProtectedRoute = () => {
   const { session, loading } = useAuth();
@@ -37,8 +38,12 @@ const ProtectedRoute = () => {
     return <Navigate to="/admin-acceso-seguro" replace />;
   }
 
-  // If authenticated, render the child routes (Admin Dashboard)
-  return <Outlet />;
+  // If authenticated, render the child routes wrapped in AdminGateway (token verification)
+  return (
+    <AdminGateway>
+      <Outlet />
+    </AdminGateway>
+  );
 };
 
 export default ProtectedRoute;

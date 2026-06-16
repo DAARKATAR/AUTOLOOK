@@ -16,7 +16,7 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
       <div className="table-header">
         <div style={{display: 'flex', alignItems: 'center', gap: '2rem'}}>
           <h3>Inventario Actual</h3>
-          <div className="admin-tabs">
+          <div className="admin-tabs" style={{display: 'none'}}>
             <button className={`tab-btn ${activeTab === 'todos' ? 'active' : ''}`} onClick={() => setActiveTab('todos')}>Todas</button>
             <button className={`tab-btn ${activeTab === 'motolook' ? 'active' : ''}`} onClick={() => setActiveTab('motolook')}>MotoLook</button>
             <button className={`tab-btn ${activeTab === 'autolook' ? 'active' : ''}`} onClick={() => setActiveTab('autolook')}>AutoLook</button>

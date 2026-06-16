@@ -6,3 +6,10 @@ build/
 .DS_Store
 .agents/
 skills-lock.json
+# Local env files (ensure examples do not contain secrets)
+.env.local
+.env.*.local
+/.secrets
+*.secret
+frontend/.env
+backend/.env.local

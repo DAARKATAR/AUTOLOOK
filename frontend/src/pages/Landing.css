@@ -100,6 +100,8 @@
   text-transform: uppercase;
   letter-spacing: -2px;
   color: var(--secondary);
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
 }
 
 .hero-subtitle-premium {
