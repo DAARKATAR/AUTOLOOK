@@ -1,9 +1,22 @@
 /**
  * IP Whitelist and validation utilities
- * Supports both IPv4 and IPv6, including CIDR notation
+ * Supports both IPv4 and IPv6 (exact match) and CIDR notation for IPv4
  */
 
-import { match } from 'ip-matcher'
+const ipToInt = (ip) => {
+  return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0) >>> 0
+}
+
+const matchCIDR = (ip, cidr) => {
+  try {
+    const [range, bits] = cidr.split('/')
+    const mask = ~(2 ** (32 - parseInt(bits)) - 1) >>> 0
+    return (ipToInt(ip) & mask) === (ipToInt(range) & mask)
+  } catch (e) {
+    console.warn(`Invalid CIDR pattern: ${cidr}`)
+    return false
+  }
+}
 
 const parseWhitelist = () => {
   const whitelist = process.env.IP_WHITELIST || '127.0.0.1,::1'
@@ -31,15 +44,8 @@ const isIPWhitelisted = (ip) => {
   
   return whitelist.some(pattern => {
     if (pattern.includes('/')) {
-      // CIDR notation
-      try {
-        return match(ip, pattern)
-      } catch (e) {
-        console.warn(`Invalid CIDR pattern: ${pattern}`)
-        return false
-      }
+      return matchCIDR(ip, pattern)
     } else {
-      // Exact match
       return ip === pattern
     }
   })

@@ -4,19 +4,28 @@
 
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.SUPABASE_URL
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY
+const getSupabaseClient = () => {
+  const supabaseUrl = process.env.SUPABASE_URL
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY
 
-if (!supabaseUrl || !supabaseServiceKey) {
-  throw new Error('Missing Supabase configuration')
+  if (!supabaseUrl || !supabaseServiceKey) {
+    throw new Error('Missing Supabase configuration')
+  }
+
+  return createClient(supabaseUrl, supabaseServiceKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false
+    }
+  })
 }
 
-export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
+export const supabase = {
   auth: {
-    autoRefreshToken: false,
-    persistSession: false
-  }
-})
+    signInWithPassword: (...args) => getSupabaseClient().auth.signInWithPassword(...args),
+  },
+  from: (...args) => getSupabaseClient().from(...args),
+}
 
 /**
  * Verify admin user exists in public.admins table
