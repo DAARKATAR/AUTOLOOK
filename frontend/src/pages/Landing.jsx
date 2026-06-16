@@ -64,7 +64,7 @@ const Landing = () => {
     <div className="unified-landing">
       <SeoHead 
         title="Repuestos, Lujos y Accesorios" 
-        description="El mejor catálogo de repuestos, lujos y accesorios de alto rendimiento para autos y motos en Funza. Todas las marcas: Pirelli, Brembo y más."
+        description="El mejor catálogo de repuestos, lujos, accesorios de alto rendimiento, GPS, sensores y radios para autos y motos en Funza. Todas las marcas: Pirelli, Brembo y más."
         schema={localBusinessSchema} 
       />
       <Navbar />
@@ -87,10 +87,10 @@ const Landing = () => {
         
         <div className="container hero-content-premium">
           <h1 className="hero-title-premium">
-            <span style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
+            <span className="subtle-yellow-glow" style={{ display: 'block', fontSize: '0.4em', color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: '10px' }}>
               REPUESTOS, LUJOS Y ACCESORIOS PARA
             </span>
-            <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
+            <span className="text-transparent bg-clip-text gradient-neon" style={{ filter: 'drop-shadow(0 0 8px rgba(255, 204, 0, 0.4))' }}>AUTOS Y MOTOS</span>
           </h1>
           <p className="hero-subtitle-premium">
             Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles.
@@ -112,6 +112,16 @@ const Landing = () => {
                 <h3>AUTOMÓVILES</h3>
                 <p>Rines • Aerodinámica • Iluminación</p>
                 <span className="btn-glow auto-glow">Ver Catálogo 🚗</span>
+              </div>
+            </div>
+
+            {/* Catálogo oculto (GPS, Sensores, Radios) */}
+            <div className="luxury-card tech-card animate-float" style={{ display: 'none' }} onClick={() => handleSelectCatalog('techlook')}>
+              <div className="card-overlay"></div>
+              <div className="card-content">
+                <h3>TECNOLOGÍA Y GPS</h3>
+                <p>Radios • Sensores • Walkie Talkies</p>
+                <span className="btn-glow tech-glow">Ver Catálogo 📡</span>
               </div>
             </div>
           </div>
@@ -201,7 +211,7 @@ const Landing = () => {
               categories={['Todos', 'Aerodinámica', 'Rines', 'Performance', 'Iluminación']} 
               hideLayout={true}
             />
-          ) : (
+          ) : selectedCatalog === 'motolook' ? (
             <SharedCatalog 
               storeType="motolook"
               themeClass="theme-moto"
@@ -210,7 +220,16 @@ const Landing = () => {
               categories={['Todos', 'Repuestos', 'Lujos', 'Seguridad', 'Accesorios']} 
               hideLayout={true}
             />
-          )}
+          ) : selectedCatalog === 'techlook' ? (
+            <SharedCatalog 
+              storeType="techlook"
+              themeClass="theme-tech"
+              title="COLECCIÓN TECNOLOGÍA"
+              subtitle="GPS, sensores y comunicación de alta precisión."
+              categories={['Todos', 'GPS y Rastreo', 'Sensores', 'Radios y Comunicación', 'Otros']} 
+              hideLayout={true}
+            />
+          ) : null}
         </section>
       )}
 

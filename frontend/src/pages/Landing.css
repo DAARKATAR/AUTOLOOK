@@ -142,6 +142,10 @@
   background-image: url('https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=1000');
 }
 
+.tech-card {
+  background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1000');
+}
+
 .card-overlay {
   position: absolute;
   top: 0;
@@ -193,6 +197,11 @@
   color: white;
 }
 
+.tech-glow {
+  background: #f39c12;
+  color: white;
+}
+
 .luxury-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(10, 17, 40, 0.15);
@@ -208,6 +217,11 @@
 
 .moto-card:hover .btn-glow { background: var(--primary); transform: scale(1.05); }
 .auto-card:hover .auto-glow { background: var(--secondary); transform: scale(1.05); }
+.tech-card:hover .tech-glow { background: #e67e22; transform: scale(1.05); }
+
+.subtle-yellow-glow {
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
+}
 
 /* Brands Marquee */
 .brands-marquee {
