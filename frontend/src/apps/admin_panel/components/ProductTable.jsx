@@ -60,7 +60,10 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                     </span>
                   </td>
                   <td><span className="badge">{prod.category}</span></td>
-                  <td>${prod.price}</td>
+                  <td>
+                    ${prod.price}
+                    {prod.price_max ? ` - $${prod.price_max}` : ''}
+                  </td>
                   <td>
                     <span className={`stock-badge ${prod.stock < 5 ? 'low' : ''}`}>{prod.stock}</span>
                   </td>

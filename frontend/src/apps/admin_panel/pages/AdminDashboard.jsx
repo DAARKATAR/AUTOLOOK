@@ -22,6 +22,7 @@ const AdminDashboard = () => {
     category: 'Repuestos',
     brand: '', 
     price: '',
+    priceMax: '',
     stock: '',
     imageUrl: ''
   });
@@ -56,6 +57,7 @@ const AdminDashboard = () => {
       category: prod.category || 'Repuestos',
       brand: prod.brand || '',
       price: prod.price || '',
+      priceMax: prod.price_max || '',
       stock: prod.stock || 0,
       imageUrl: prod.imageUrl || ''
     });
@@ -63,7 +65,7 @@ const AdminDashboard = () => {
   };
 
   const resetForm = () => {
-    setFormData({ id: null, name: '', storeType: 'motolook', category: 'Repuestos', brand: '', price: '', stock: '', imageUrl: '' });
+    setFormData({ id: null, name: '', storeType: 'motolook', category: 'Repuestos', brand: '', price: '', priceMax: '', stock: '', imageUrl: '' });
     setIsEditing(false);
   };
 

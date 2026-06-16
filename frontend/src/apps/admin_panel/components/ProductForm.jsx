@@ -72,9 +72,15 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
           </div>
         </div>
         <div className="form-row">
-          <div className="form-group">
-            <label>Precio ($)</label>
-            <input type="number" required min="0" value={formData.price} onChange={e => setFormData({...formData, price: Number(e.target.value)})} />
+          <div className="form-group" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ flex: 1, minWidth: '120px' }}>
+              <label>Precio Mínimo ($)</label>
+              <input type="number" required min="0" value={formData.price} onChange={e => setFormData({...formData, price: Number(e.target.value)})} placeholder="Ej: 50000" />
+            </div>
+            <div style={{ flex: 1, minWidth: '120px' }}>
+              <label>Precio Máximo (Opcional)</label>
+              <input type="number" min="0" value={formData.priceMax} onChange={e => setFormData({...formData, priceMax: e.target.value ? Number(e.target.value) : ''})} placeholder="Opcional" />
+            </div>
           </div>
           <div className="form-group">
             <label>Stock</label>

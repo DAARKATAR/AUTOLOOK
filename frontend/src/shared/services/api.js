@@ -4,6 +4,12 @@ const validateProductData = (data) => {
   if (data.price !== undefined && data.price < 0) {
     throw new Error('El precio no puede ser negativo.');
   }
+  if (data.priceMax !== undefined && data.priceMax !== '' && data.priceMax !== null) {
+    if (Number(data.priceMax) < 0) throw new Error('El precio máximo no puede ser negativo.');
+    if (data.price !== undefined && Number(data.priceMax) < Number(data.price)) {
+      throw new Error('El precio máximo no puede ser menor al precio mínimo.');
+    }
+  }
   if (data.stock !== undefined && data.stock < 0) {
     throw new Error('El stock no puede ser negativo.');
   }
@@ -38,8 +44,14 @@ export const catalogApi = {
   addProduct: async (producto) => {
     validateProductData(producto);
     
-    // Eliminar 'id' para que Postgres lo auto-genere y no falle con "violates not-null"
-    const { id, ...dataToInsert } = producto;
+    // Eliminar 'id' y transformar priceMax
+    const { id, priceMax, ...rest } = producto;
+    const dataToInsert = { ...rest };
+    if (priceMax !== undefined && priceMax !== '') {
+      dataToInsert.price_max = Number(priceMax);
+    } else {
+      dataToInsert.price_max = null;
+    }
     
     const { data, error } = await supabase
       .from('products')
@@ -55,9 +67,15 @@ export const catalogApi = {
   updateProduct: async (id, updatedFields) => {
     validateProductData(updatedFields);
 
+    const { priceMax, ...rest } = updatedFields;
+    const dataToUpdate = { ...rest };
+    if (priceMax !== undefined) {
+      dataToUpdate.price_max = priceMax === '' ? null : Number(priceMax);
+    }
+
     const { data, error } = await supabase
       .from('products')
-      .update(updatedFields)
+      .update(dataToUpdate)
       .eq('id', id)
       .select()
       .single();

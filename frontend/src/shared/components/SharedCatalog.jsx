@@ -149,7 +149,10 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                   <div className="product-info">
                     <h3>{product.name}</h3>
                     <div className="product-price-row">
-                      <span className="price">${product.price.toLocaleString()}</span>
+                      <span className="price">
+                        ${product.price.toLocaleString()}
+                        {product.price_max ? ` - $${product.price_max.toLocaleString()}` : ''}
+                      </span>
                       <span className={`stock ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}`}>
                         {product.stock > 0 ? `${product.stock} disponibles` : 'Agotado'}
                       </span>
