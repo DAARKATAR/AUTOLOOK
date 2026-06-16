@@ -13,7 +13,6 @@
     "next": "^15.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "jsonwebtoken": "^9.1.2",
     "@supabase/supabase-js": "^2.38.0",
     "jose": "^5.1.0"
   },
