@@ -49,6 +49,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
             <select value={formData.storeType} onChange={e => setFormData({...formData, storeType: e.target.value})}>
               <option value="motolook">Moto (MotoLook)</option>
               <option value="autolook">Carro (AutoLook)</option>
+              <option value="general">Ambos (General)</option>
             </select>
           </div>
           <div className="form-group">
