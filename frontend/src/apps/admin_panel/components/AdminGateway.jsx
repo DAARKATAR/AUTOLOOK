@@ -15,15 +15,7 @@ const AdminGateway = ({ children }) => {
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
 
-  useEffect(() => {
-    // Verificar si ya tiene JWT válido en sessionStorage
-    const storedJWT = sessionStorage.getItem('admin-jwt');
-    if (storedJWT) {
-      verifyToken(storedJWT);
-    }
-  }, []);
-
-  const verifyToken = async (token) => {
+  async function verifyToken(token) {
     try {
       const response = await fetch(`${backendUrl}/api/admin/verify`, {
         method: 'POST',
@@ -43,7 +35,15 @@ const AdminGateway = ({ children }) => {
       sessionStorage.removeItem('admin-jwt');
       setIsAuthenticated(false);
     }
-  };
+  }
+
+  useEffect(() => {
+    // Verificar si ya tiene JWT válido en sessionStorage
+    const storedJWT = sessionStorage.getItem('admin-jwt');
+    if (storedJWT) {
+      verifyToken(storedJWT);
+    }
+  }, []);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();

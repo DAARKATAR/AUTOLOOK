@@ -12,21 +12,6 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [filterMode, setFilterMode] = useState('category'); // 'category' o 'brand'
 
-  useEffect(() => {
-    // Si no está escondiendo el layout, haz scroll top.
-    if (!hideLayout) {
-      window.scrollTo(0, 0);
-    }
-    fetchCatalog();
-
-    const handleStorageChange = (e) => {
-      if (e.key === 'catalog_products') fetchCatalog();
-    };
-    
-    window.addEventListener('storage', handleStorageChange);
-    return () => window.removeEventListener('storage', handleStorageChange);
-  }, [storeType]);
-
   async function fetchCatalog() {
     setLoading(true);
     try {
@@ -43,6 +28,21 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+    // Si no está escondiendo el layout, haz scroll top.
+    if (!hideLayout) {
+      window.scrollTo(0, 0);
+    }
+    fetchCatalog();
+
+    const handleStorageChange = (e) => {
+      if (e.key === 'catalog_products') fetchCatalog();
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, [storeType]);
 
   const handleFilter = (filterValue, mode = filterMode) => {
     setActiveCategory(filterValue);
