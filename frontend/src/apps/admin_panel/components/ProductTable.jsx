@@ -1,5 +1,5 @@
 import React from 'react';
-import { Edit2, Trash2 } from 'lucide-react';
+import { Edit2, Trash2, RefreshCw } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
 const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProducts, editProduct }) => {
@@ -22,7 +22,9 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
             <button className={`tab-btn ${activeTab === 'autolook' ? 'active' : ''}`} onClick={() => setActiveTab('autolook')}>AutoLook</button>
           </div>
         </div>
-        <button className="btn-icon" onClick={() => fetchProducts()}>🔄</button>
+        <button className="btn-icon action-btn refresh-btn" onClick={() => fetchProducts()} title="Actualizar inventario" style={{ color: 'var(--primary)', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.05)', padding: '0.5rem', borderRadius: '8px', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <RefreshCw size={20} />
+        </button>
       </div>
       
       <div className="table-responsive">
