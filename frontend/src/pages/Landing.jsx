@@ -120,7 +120,7 @@ const Landing = () => {
               <div className="card-overlay"></div>
               <div className="card-content">
                 <h3>TECNOLOGÍA Y GPS</h3>
-                <p>Radios • Sensores • Walkie Talkies</p>
+                <p>Radios de Comunicacion • Sensores</p>
                 <span className="btn-glow tech-glow">Ver Catálogo 📡</span>
               </div>
             </div>
