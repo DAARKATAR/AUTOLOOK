@@ -164,6 +164,16 @@
   opacity: 0;
   pointer-events: none;
 }
+
+.card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2.5rem 2rem;
+  text-align: left;
+  z-index: 2;
+  transform: translateY(20px);
   transition: transform 0.4s ease;
 }
 
