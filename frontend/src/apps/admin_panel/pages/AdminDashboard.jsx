@@ -23,7 +23,6 @@ const AdminDashboard = () => {
     brand: '', 
     price: '',
     priceMax: '',
-    stock: '',
     imageUrl: ''
   });
 
@@ -58,14 +57,13 @@ const AdminDashboard = () => {
       brand: prod.brand || '',
       price: prod.price || '',
       priceMax: prod.price_max || '',
-      stock: prod.stock || 0,
       imageUrl: prod.imageUrl || ''
     });
     setIsEditing(true);
   };
 
   const resetForm = () => {
-    setFormData({ id: null, name: '', storeType: 'motolook', category: 'Repuestos', brand: '', price: '', priceMax: '', stock: '', imageUrl: '' });
+    setFormData({ id: null, name: '', storeType: 'motolook', category: 'Repuestos', brand: '', price: '', priceMax: '', imageUrl: '' });
     setIsEditing(false);
   };
 
@@ -102,10 +100,6 @@ const AdminDashboard = () => {
             <div className="stat-card">
               <span className="stat-label">Productos</span>
               <span className="stat-value">{products.length}</span>
-            </div>
-            <div className="stat-card stat-red">
-              <span className="stat-label">Unidades</span>
-              <span className="stat-value">{products.reduce((acc, curr) => acc + (curr.stock || 0), 0)}</span>
             </div>
           </div>
         </header>

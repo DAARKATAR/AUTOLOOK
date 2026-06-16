@@ -10,9 +10,7 @@ const validateProductData = (data) => {
       throw new Error('El precio máximo no puede ser menor al precio mínimo.');
     }
   }
-  if (data.stock !== undefined && data.stock < 0) {
-    throw new Error('El stock no puede ser negativo.');
-  }
+
   if (data.name !== undefined) {
     if (typeof data.name !== 'string' || data.name.trim() === '') {
       throw new Error('El nombre del producto es obligatorio y no puede estar vacío.');

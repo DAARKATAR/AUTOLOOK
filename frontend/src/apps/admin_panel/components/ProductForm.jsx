@@ -82,10 +82,6 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               <input type="number" min="0" value={formData.priceMax} onChange={e => setFormData({...formData, priceMax: e.target.value ? Number(e.target.value) : ''})} placeholder="Opcional" />
             </div>
           </div>
-          <div className="form-group">
-            <label>Stock</label>
-            <input type="number" required min="0" value={formData.stock} onChange={e => setFormData({...formData, stock: Number(e.target.value)})} />
-          </div>
         </div>
 
         <div className="form-group file-upload-wrapper">

@@ -37,15 +37,14 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
               <th>Sucursal</th>
               <th>Categoría</th>
               <th>Precio</th>
-              <th>Stock</th>
               <th>Acciones</th>
             </tr>
           </thead>
           <tbody>
             {loading ? (
-              <tr><td colSpan="7" className="text-center py-4">Cargando inventario...</td></tr>
+              <tr><td colSpan="6" className="text-center py-4">Cargando inventario...</td></tr>
             ) : products.length === 0 ? (
-              <tr><td colSpan="7" className="text-center py-4">No hay productos en esta sucursal</td></tr>
+              <tr><td colSpan="6" className="text-center py-4">No hay productos en esta sucursal</td></tr>
             ) : (
               products.map(prod => (
                 <tr key={prod.id}>
@@ -63,9 +62,6 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                   <td>
                     ${prod.price}
                     {prod.price_max ? ` - $${prod.price_max}` : ''}
-                  </td>
-                  <td>
-                    <span className={`stock-badge ${prod.stock < 5 ? 'low' : ''}`}>{prod.stock}</span>
                   </td>
                   <td className="actions-cell">
                     <button onClick={() => editProduct(prod)} className="action-btn edit" title="Editar"><Edit2 size={16} /></button>
