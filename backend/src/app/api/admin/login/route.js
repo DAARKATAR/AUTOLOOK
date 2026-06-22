@@ -8,28 +8,8 @@ import { getClientIP, isIPWhitelisted, logFailedAttempt } from '@/lib/ip-validat
 import { createToken } from '@/lib/jwt'
 import { supabase, isAdminUser } from '@/lib/supabase'
 
-// Rate limiting store (in production, use Redis)
-const attemptStore = new Map()
-
-const checkRateLimit = (ip) => {
-  const now = Date.now()
-  const window = parseInt(process.env.RATE_LIMIT_WINDOW || '900000') // 15 min
-  const maxRequests = parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '5')
-  
-  if (!attemptStore.has(ip)) {
-    attemptStore.set(ip, [])
-  }
-  
-  const attempts = attemptStore.get(ip).filter(time => now - time < window)
-  
-  if (attempts.length >= maxRequests) {
-    return false
-  }
-  
-  attempts.push(now)
-  attemptStore.set(ip, attempts)
-  return true
-}
+// Rate limiting store: Eliminado porque en un entorno Serverless la memoria no se comparte.
+// Se debe delegar la protección de rate limit a Supabase Auth Rate Limits en el Dashboard.
 
 export async function POST(req) {
   try {
@@ -47,13 +27,8 @@ export async function POST(req) {
     }
 
     // 2. Check rate limiting
-    if (!checkRateLimit(clientIP)) {
-      await logFailedAttempt(clientIP, email, 'Rate limit exceeded')
-      return NextResponse.json(
-        { error: 'Too many attempts. Please try again later.' },
-        { status: 429 }
-      )
-    }
+    // La protección contra fuerza bruta y rate limit se ha delegado a Supabase Auth.
+    // Configure esto desde su panel de Supabase: Authentication -> Rate Limits.
 
     // 3. Verify admin secret token (client-side first gate)
     if (token !== process.env.ADMIN_SECRET_TOKEN) {

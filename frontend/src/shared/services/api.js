@@ -23,19 +23,23 @@ const validateProductData = (data) => {
 
 export const catalogApi = {
   // GET ALL PRODUCTS
-  getProducts: async (storeType = 'todos') => {
+  getProducts: async (storeType = 'todos', limit = null, offset = 0) => {
     let query = supabase
       .from('products')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('id', { ascending: false });
 
     if (storeType !== 'todos') {
       query = query.eq('storeType', storeType);
     }
 
-    const { data, error } = await query;
+    if (limit) {
+      query = query.range(offset, offset + limit - 1);
+    }
+
+    const { data, count, error } = await query;
     if (error) throw error;
-    return data;
+    return { data, count };
   },
 
   // CREATE PRODUCT

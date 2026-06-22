@@ -11,21 +11,37 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [filterMode, setFilterMode] = useState('category'); // 'category' o 'brand'
+  const [offset, setOffset] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const LIMIT = 12;
 
-  async function fetchCatalog() {
-    setLoading(true);
+  async function fetchCatalog(isLoadMore = false) {
+    if (isLoadMore) {
+      setLoadingMore(true);
+    } else {
+      setLoading(true);
+    }
+    
     try {
-      const data = await catalogApi.getProducts();
-      // Filtrar por storeType o general si está soportado
-      const filteredData = storeType 
-        ? data.filter(p => p.storeType === storeType || p.storeType === 'general')
-        : data;
-      setProducts(filteredData);
-      setFilteredProducts(filteredData);
+      const currentOffset = isLoadMore ? offset : 0;
+      const { data, count } = await catalogApi.getProducts(storeType || 'todos', LIMIT, currentOffset);
+      
+      const newProducts = isLoadMore ? [...products, ...data] : data;
+      setProducts(newProducts);
+      setFilteredProducts(newProducts);
+      setTotalCount(count || 0);
+      
+      if (!isLoadMore) {
+        setOffset(LIMIT);
+      } else {
+        setOffset(prev => prev + LIMIT);
+      }
     } catch (e) {
       console.error(e);
     } finally {
       setLoading(false);
+      setLoadingMore(false);
     }
   }
 
@@ -163,6 +179,20 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Botón Cargar Más */}
+          {!loading && products.length < totalCount && (
+            <div className="text-center" style={{ marginTop: '3rem' }}>
+              <button 
+                className="btn btn-primary" 
+                onClick={() => fetchCatalog(true)}
+                disabled={loadingMore}
+                style={{ padding: '0.8rem 2rem', fontSize: '1.1rem' }}
+              >
+                {loadingMore ? 'Cargando...' : 'Cargar más productos'}
+              </button>
             </div>
           )}
         </div>

@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   async function fetchProducts() {
     setLoading(true);
     try {
-      const data = await catalogApi.getProducts(activeTab);
+      const { data } = await catalogApi.getProducts(activeTab);
       setProducts(data);
     } catch (e) {
       console.error(e);
