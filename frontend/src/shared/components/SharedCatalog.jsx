@@ -189,16 +189,19 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                       <h3>{product.name}</h3>
                       
                       {product.description && (
-                        <div className="description-toggle-container">
-                          {!isExpanded && (
-                            <span className="view-description-btn">
-                              Ver descripción <span>&#x25BC;</span>
-                            </span>
-                          )}
+                        <div className="description-toggle-container" style={{ display: 'flex', flexDirection: 'column' }}>
                           <div className={`product-description-wrapper ${isExpanded ? 'show' : ''}`}>
                             <p className="product-description" style={{ fontSize: '0.9rem', color: 'var(--text-dim)', marginBottom: '0.8rem', lineHeight: '1.4' }}>
                               {product.description}
                             </p>
+                          </div>
+                          <div style={{ textAlign: 'center', marginTop: '4px' }}>
+                            <span className="view-description-btn" onClick={(e) => { e.stopPropagation(); toggleExpand(product.id, e); }}>
+                              {isExpanded ? 'Ocultar' : 'Ver descripción'} 
+                              <span style={{ display: 'inline-block', transform: isExpanded ? 'rotate(180deg)' : 'none', transition: 'transform 0.3s ease' }}>
+                                &#x25BC;
+                              </span>
+                            </span>
                           </div>
                         </div>
                       )}
