@@ -204,17 +204,18 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                       )}
                       
                       <div className="product-price-row">
-                      <span className="price">
-                        ${product.price.toLocaleString()}
-                        {product.price_max ? ` - $${product.price_max.toLocaleString()}` : ''}
-                      </span>
+                        <span className="price">
+                          ${product.price.toLocaleString()}
+                          {product.price_max ? ` - $${product.price_max.toLocaleString()}` : ''}
+                        </span>
+                      </div>
+                      <button 
+                        className="btn btn-outline w-full quote-btn mt-3"
+                        onClick={() => handleWhatsAppQuote(product.name)}
+                      >
+                        Cotizar por WhatsApp
+                      </button>
                     </div>
-                    <button 
-                      className="btn btn-outline w-full quote-btn mt-3"
-                      onClick={() => handleWhatsAppQuote(product.name)}
-                    >
-                      Cotizar por WhatsApp
-                    </button>
                   </div>
                 );
               })}
