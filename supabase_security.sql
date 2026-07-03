@@ -84,3 +84,9 @@ USING (bucket_id = 'catalogo' AND (auth.jwt() ->> 'email'::text) = 'admin@autolo
 -- 2. Desactiva "Enable Signups" (Confirm user signups).
 -- 3. De esta forma, nadie podrá registrarse y tú deberás invitar a los admins
 --    desde la pestaña "Users" de tu panel de Supabase manualmente.
+
+-- ==========================================
+-- A�ADIR CAMPO DESCRIPCION A PRODUCTOS
+-- ==========================================
+-- Ejecuta esto si necesitas a�adir la descripci�n a los productos.
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS description TEXT;

@@ -164,6 +164,11 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                   </div>
                   <div className="product-info">
                     <h3>{product.name}</h3>
+                    {product.description && (
+                      <p className="product-description" style={{ fontSize: '0.9rem', color: 'var(--text-dim)', marginBottom: '0.8rem', lineHeight: '1.4' }}>
+                        {product.description}
+                      </p>
+                    )}
                     <div className="product-price-row">
                       <span className="price">
                         ${product.price.toLocaleString()}

@@ -83,6 +83,18 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
             </div>
           </div>
         </div>
+        <div className="form-row">
+          <div className="form-group" style={{gridColumn: '1 / -1'}}>
+            <label>Descripción del Producto</label>
+            <textarea 
+              rows="3" 
+              placeholder="Añade detalles específicos de este producto..."
+              value={formData.description || ''} 
+              onChange={e => setFormData({...formData, description: e.target.value})}
+              style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', backgroundColor: 'rgba(0,0,0,0.2)', color: 'white' }}
+            />
+          </div>
+        </div>
 
         <div className="form-group file-upload-wrapper">
           <label>Imagen del Producto (PNG/JPG)</label>
