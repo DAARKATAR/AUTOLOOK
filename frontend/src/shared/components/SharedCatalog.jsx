@@ -14,6 +14,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [loadingMore, setLoadingMore] = useState(false);
+  const [expandedProductIds, setExpandedProductIds] = useState(new Set());
   const LIMIT = 12;
 
   async function fetchCatalog(isLoadMore = false) {
@@ -96,6 +97,21 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
     window.open(url, '_blank');
   };
 
+  const toggleExpand = (id, e) => {
+    // Evitar que el clic se propague si se hace clic en botones
+    if (e.target.tagName.toLowerCase() === 'button' || e.target.closest('button')) return;
+    
+    setExpandedProductIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   return (
     <div className={`catalog-page ${themeClass}`} style={hideLayout ? { minHeight: 'auto', paddingTop: '2rem', paddingBottom: '2rem' } : {}}>
       <SeoHead 
@@ -156,20 +172,38 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
             </div>
           ) : (
             <div className="product-grid">
-              {filteredProducts.map(product => (
-                <div key={product.id} className="product-card glass">
-                  <div className="product-img-wrapper">
-                    <img src={product.imageUrl} alt={product.name} className="product-img" loading="lazy" />
-                    <span className="category-badge">{filterMode === 'brand' ? product.category : (product.brand || product.category)}</span>
-                  </div>
-                  <div className="product-info">
-                    <h3>{product.name}</h3>
-                    {product.description && (
-                      <p className="product-description" style={{ fontSize: '0.9rem', color: 'var(--text-dim)', marginBottom: '0.8rem', lineHeight: '1.4' }}>
-                        {product.description}
-                      </p>
-                    )}
-                    <div className="product-price-row">
+              {filteredProducts.map(product => {
+                const isExpanded = expandedProductIds.has(product.id);
+                return (
+                  <div 
+                    key={product.id} 
+                    className={`product-card glass ${isExpanded ? 'expanded' : ''}`}
+                    onClick={(e) => toggleExpand(product.id, e)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="product-img-wrapper">
+                      <img src={product.imageUrl} alt={product.name} className="product-img" loading="lazy" />
+                      <span className="category-badge">{filterMode === 'brand' ? product.category : (product.brand || product.category)}</span>
+                    </div>
+                    <div className="product-info">
+                      <h3>{product.name}</h3>
+                      
+                      {product.description && (
+                        <div className="description-toggle-container">
+                          {!isExpanded && (
+                            <span className="view-description-btn">
+                              Ver descripción <span>&#x25BC;</span>
+                            </span>
+                          )}
+                          <div className={`product-description-wrapper ${isExpanded ? 'show' : ''}`}>
+                            <p className="product-description" style={{ fontSize: '0.9rem', color: 'var(--text-dim)', marginBottom: '0.8rem', lineHeight: '1.4' }}>
+                              {product.description}
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      
+                      <div className="product-price-row">
                       <span className="price">
                         ${product.price.toLocaleString()}
                         {product.price_max ? ` - $${product.price_max.toLocaleString()}` : ''}
@@ -182,8 +216,8 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
                       Cotizar por WhatsApp
                     </button>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
 

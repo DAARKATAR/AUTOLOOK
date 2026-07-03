@@ -252,7 +252,8 @@
 }
 
 .form-group input,
-.form-group select {
+.form-group select,
+.form-group textarea {
   padding: 0.75rem 0.9rem;
   background: #F8F9FA;
   border: 1.5px solid rgba(10, 17, 40, 0.1);
@@ -263,16 +264,19 @@
   transition: all 0.2s;
   outline: none;
   width: 100%;
+  resize: vertical;
 }
 
 .form-group input:focus,
-.form-group select:focus {
+.form-group select:focus,
+.form-group textarea:focus {
   border-color: var(--primary);
   background: #FFFFFF;
   box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.08);
 }
 
-.form-group input::placeholder {
+.form-group input::placeholder,
+.form-group textarea::placeholder {
   color: #A0A9BF;
 }
 

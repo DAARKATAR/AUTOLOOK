@@ -216,3 +216,49 @@
   border-radius: 16px;
   border: 1px dashed var(--card-border);
 }
+
+/* Description Toggle */
+.description-toggle-container {
+  margin-bottom: 0.5rem;
+}
+.view-description-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 800;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+.view-description-btn:hover {
+  color: var(--secondary);
+  transform: translateX(4px);
+}
+.view-description-btn span {
+  font-size: 0.6rem;
+  transition: transform 0.3s ease;
+}
+.product-card:hover .view-description-btn span {
+  transform: translateY(3px);
+}
+
+.product-description-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+.product-description-wrapper.show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: 0.5rem;
+  overflow-y: auto;
+}
+
+.product-card.expanded {
+  transform: scale(1.05) translateY(-5px);
+  box-shadow: 0 25px 50px rgba(230, 57, 70, 0.15);
+  border-color: var(--primary);
+  z-index: 10;
+}

@@ -91,7 +91,6 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               placeholder="Añade detalles específicos de este producto..."
               value={formData.description || ''} 
               onChange={e => setFormData({...formData, description: e.target.value})}
-              style={{ width: '100%', padding: '0.8rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.2)', backgroundColor: 'rgba(0,0,0,0.2)', color: 'white' }}
             />
           </div>
         </div>
