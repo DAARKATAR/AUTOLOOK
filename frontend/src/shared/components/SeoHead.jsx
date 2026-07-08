@@ -5,7 +5,7 @@ export const SeoHead = ({
   description, 
   keywords, 
   ogImage = 'https://images.unsplash.com/photo-1549557451-b847ae91b107?q=80&w=1200', 
-  url = 'https://tudominio.com/',
+  url = 'https://www.mbautolook.com/',
   schema
 }) => {
   const siteTitle = title ? `${title} | AutoLook & MotoLook` : 'AutoLook & MotoLook | Repuestos y Lujos';
