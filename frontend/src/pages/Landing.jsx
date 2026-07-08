@@ -75,11 +75,17 @@ const Landing = () => {
         <div className="hero-video-wrapper">
           <video 
             autoPlay 
-            muted 
+            muted={true}
             loop 
             playsInline 
             className="hero-video"
             poster="https://images.unsplash.com/photo-1549557451-b847ae91b107?q=80&w=2000&auto=format&fit=crop"
+            ref={(video) => {
+              if (video) {
+                video.defaultMuted = true;
+                video.muted = true;
+              }
+            }}
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
