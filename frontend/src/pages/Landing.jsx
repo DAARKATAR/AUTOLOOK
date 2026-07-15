@@ -42,7 +42,9 @@ const Landing = () => {
     "@context": "https://schema.org",
     "@type": "AutoPartsStore",
     "name": "AutoLook & MotoLook",
-    "image": "https://tudominio.com/quienes-somos.jpg",
+    "url": "https://www.mbautolook.com/",
+    "image": "https://www.mbautolook.com/quienes-somos.jpg",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Calle 13 #10-04",
@@ -50,6 +52,11 @@ const Landing = () => {
       "addressRegion": "Cundinamarca",
       "addressCountry": "CO"
     },
+    "areaServed": [
+      { "@type": "City", "name": "Funza" },
+      { "@type": "City", "name": "Mosquera" },
+      { "@type": "City", "name": "Madrid" }
+    ],
     "telephone": "+573018265636",
     "openingHoursSpecification": [
       {
@@ -58,15 +65,20 @@ const Landing = () => {
         "opens": "08:00",
         "closes": "18:00"
       }
+    ],
+    "sameAs": [
+      "https://www.instagram.com/mbautolook",
+      "https://www.facebook.com/profile.php?id=61591241101287"
     ]
   };
 
   return (
     <div className="unified-landing">
-      <SeoHead 
-        title="Repuestos, Lujos y Accesorios" 
-        description="El mejor catálogo de repuestos, lujos, accesorios de alto rendimiento, GPS, sensores y radios para autos y motos en Funza. Todas las marcas: Pirelli, Brembo y más."
-        schema={localBusinessSchema} 
+      <SeoHead
+        title="Repuestos y Lujos para Autos y Motos en Funza, Mosquera y Madrid"
+        description="Catálogo de repuestos, lujos, accesorios de alto rendimiento, GPS, sensores y radios para autos y motos en Funza, Mosquera y Madrid (Cundinamarca). Todas las marcas: Pirelli, Brembo y más."
+        keywords="repuestos Funza, lujos Mosquera, accesorios para carros Madrid Cundinamarca, repuestos motos Funza, tienda de accesorios automotrices Mosquera"
+        schema={localBusinessSchema}
       />
       <Navbar />
       
@@ -100,7 +112,7 @@ const Landing = () => {
             <span className="text-transparent bg-clip-text gradient-neon">AUTOS Y MOTOS</span>
           </h1>
           <p className="hero-subtitle-premium">
-            Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles.
+            Descubre el catálogo definitivo de accesorios de alto rendimiento, lujo aerodinámico y repuestos premium para motos y automóviles. Atendemos en Funza, Mosquera y Madrid (Cundinamarca).
           </p>
           
           <div className="hero-cards-grid animate-on-scroll">
@@ -157,7 +169,7 @@ const Landing = () => {
               <span className="subtitle-accent">NUESTRA HISTORIA</span>
               <h2>AUTOLOOK <span className="gradient-neon">COLOMBIA</span></h2>
               <p>
-                <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 13 #10-04)</strong>.
+                <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 13 #10-04)</strong>, atendiendo también a clientes de <strong>Mosquera y Madrid</strong>.
               </p>
               
               <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>Nuestra Misión</h3>

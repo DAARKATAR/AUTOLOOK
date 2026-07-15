@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin-acceso-seguro
+
+Sitemap: https://www.mbautolook.com/sitemap.xml
