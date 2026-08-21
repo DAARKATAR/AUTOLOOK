@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { SeoHead } from '../shared/components/SeoHead';
 import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
@@ -8,8 +9,22 @@ import gpsBg from '../assets/gps-bg.jpg';
 import './Landing.css';
 
 const Landing = () => {
-  const [selectedCatalog, setSelectedCatalog] = useState(null);
+  const { type } = useParams();
+  const navigate = useNavigate();
+  const [selectedCatalog, setSelectedCatalog] = useState(type || null);
   const [catalogKey, setCatalogKey] = useState(0);
+
+  useEffect(() => {
+    if (type) {
+      setSelectedCatalog(type);
+      setCatalogKey(prev => prev + 1);
+      setTimeout(() => {
+        document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    } else {
+      setSelectedCatalog(null);
+    }
+  }, [type]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -30,12 +45,8 @@ const Landing = () => {
     };
   }, [selectedCatalog]); // Re-run when catalog changes to observe new elements
 
-  const handleSelectCatalog = (type) => {
-    setSelectedCatalog(type);
-    setCatalogKey(prev => prev + 1); // Force re-render of catalog for animation
-    setTimeout(() => {
-      document.getElementById('catalog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
+  const handleSelectCatalog = (newType) => {
+    navigate(`/catalogo/${newType}`);
   };
 
   const localBusinessSchema = {

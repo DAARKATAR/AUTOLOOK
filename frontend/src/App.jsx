@@ -19,6 +19,7 @@ function App() {
           
           {/* --- CATALOGO REDIRECT --- */}
           <Route path="/catalogo" element={<Landing />} />
+          <Route path="/catalogo/:type" element={<Landing />} />
 
           {/* --- ADMIN CENTRALIZADO --- */}
           <Route path="/admin-acceso-seguro" element={<Login />} />
