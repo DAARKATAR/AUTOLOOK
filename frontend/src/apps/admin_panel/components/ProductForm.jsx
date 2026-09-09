@@ -58,6 +58,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
             <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>
               <option value="Repuestos">Repuestos</option>
               <option value="Lujos">Lujos</option>
+              <option value="Radios">Radios</option>
               <option value="Seguridad">Seguridad</option>
               <option value="Accesorios">Accesorios</option>
               <option value="Iluminación">Iluminación</option>
