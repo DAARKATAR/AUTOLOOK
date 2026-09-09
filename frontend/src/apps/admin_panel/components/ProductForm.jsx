@@ -64,6 +64,10 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               <option value="Aerodinámica">Aerodinámica</option>
               <option value="Performance">Performance</option>
               <option value="Rines">Rines</option>
+              <option value="GPS y Rastreo">GPS y Rastreo</option>
+              <option value="Sensores">Sensores</option>
+              <option value="Radios y Comunicación">Radios y Comunicación</option>
+              <option value="Otros">Otros</option>
             </select>
           </div>
           <div className="form-group">

@@ -10,6 +10,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState('Todos');
+  const [availableCategories, setAvailableCategories] = useState(categories || ['Todos']);
   const [filterMode, setFilterMode] = useState('category'); // 'category' o 'brand'
   const [offset, setOffset] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
@@ -17,7 +18,26 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const [expandedProductIds, setExpandedProductIds] = useState(new Set());
   const LIMIT = 12;
 
-  async function fetchCatalog(isLoadMore = false) {
+  // Cargar categorías dinámicas desde Supabase y sincronizarlas con las predefinidas
+  useEffect(() => {
+    let isMounted = true;
+    async function loadCategories() {
+      try {
+        const dbCategories = await catalogApi.getCategories(storeType);
+        if (isMounted) {
+          const base = categories && categories.length > 0 ? categories : ['Todos'];
+          const merged = ['Todos', ...new Set([...base.filter(c => c !== 'Todos'), ...dbCategories])];
+          setAvailableCategories(merged);
+        }
+      } catch (err) {
+        console.warn('Error loading categories from Supabase:', err);
+      }
+    }
+    loadCategories();
+    return () => { isMounted = false; };
+  }, [storeType, categories]);
+
+  async function fetchCatalog(isLoadMore = false, categoryToFetch = activeCategory) {
     if (isLoadMore) {
       setLoadingMore(true);
     } else {
@@ -26,7 +46,12 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
     
     try {
       const currentOffset = isLoadMore ? offset : 0;
-      const { data, count } = await catalogApi.getProducts(storeType || 'todos', LIMIT, currentOffset);
+      const { data, count } = await catalogApi.getProducts(
+        storeType || 'todos', 
+        LIMIT, 
+        currentOffset,
+        categoryToFetch
+      );
       
       const newProducts = isLoadMore ? [...products, ...data] : data;
       setProducts(newProducts);
@@ -51,10 +76,12 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
     if (!hideLayout) {
       window.scrollTo(0, 0);
     }
-    fetchCatalog();
+    setActiveCategory('Todos');
+    setOffset(0);
+    fetchCatalog(false, 'Todos');
 
     const handleStorageChange = (e) => {
-      if (e.key === 'catalog_products') fetchCatalog();
+      if (e.key === 'catalog_products') fetchCatalog(false, 'Todos');
     };
     
     window.addEventListener('storage', handleStorageChange);
@@ -64,18 +91,15 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const handleFilter = (filterValue, mode = filterMode) => {
     setActiveCategory(filterValue);
     
-    if (filterValue === 'Todos') {
-      setFilteredProducts(products);
-      return;
-    }
-
-    const value = filterValue.trim().toLowerCase();
-
     if (mode === 'category') {
-      setFilteredProducts(products.filter(p => 
-        p.category && p.category.trim().toLowerCase() === value
-      ));
+      setOffset(0);
+      fetchCatalog(false, filterValue);
     } else {
+      if (filterValue === 'Todos') {
+        setFilteredProducts(products);
+        return;
+      }
+      const value = filterValue.trim().toLowerCase();
       setFilteredProducts(products.filter(p => 
         p.brand && p.brand.trim().toLowerCase() === value
       ));
@@ -84,11 +108,17 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
 
   const handleModeToggle = (mode) => {
     setFilterMode(mode);
-    handleFilter('Todos', mode);
+    setActiveCategory('Todos');
+    if (mode === 'category') {
+      setOffset(0);
+      fetchCatalog(false, 'Todos');
+    } else {
+      setFilteredProducts(products);
+    }
   };
 
   const uniqueBrands = ['Todos', ...new Set(products.map(p => p.brand).filter(Boolean))];
-  const activeFilters = filterMode === 'category' ? categories : uniqueBrands;
+  const activeFilters = filterMode === 'category' ? availableCategories : uniqueBrands;
 
   const handleWhatsAppQuote = (productName) => {
     const phoneNumber = "573018265636"; // Número real de AutoLook
@@ -123,31 +153,33 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
 
       <main className={`catalog-content ${hideLayout ? '' : 'section-padding'}`} id="catalog-section">
         <div className="container">
-          <div className="catalog-header text-center" style={{ marginBottom: '3rem' }}>
+          <div className="catalog-header text-center" style={{ marginBottom: '2.5rem' }}>
             <h2 className="neon-text accent-color" style={{ fontSize: '2.5rem', fontWeight: '800', marginBottom: '1rem' }}>{title}</h2>
             <p className="text-dim mt-2" style={{ marginBottom: '2rem' }}>{subtitle}</p>
           </div>
 
-          {/* Filter Mode Toggle (Oculto temporalmente) */}
-          <div style={{ display: 'none', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
-            <button 
-              className={`btn ${filterMode === 'category' ? 'btn-primary' : 'btn-outline'}`}
-              onClick={() => handleModeToggle('category')}
-              style={{ padding: '0.4rem 1.5rem', borderRadius: '30px' }}
-            >
-              Filtrar por Categoría
-            </button>
-            <button 
-              className={`btn ${filterMode === 'brand' ? 'btn-primary' : 'btn-outline'}`}
-              onClick={() => handleModeToggle('brand')}
-              style={{ padding: '0.4rem 1.5rem', borderRadius: '30px' }}
-            >
-              Filtrar por Marca
-            </button>
-          </div>
+          {/* Filter Mode Toggle (Se muestra solo si hay marcas disponibles en el inventario) */}
+          {uniqueBrands.length > 2 && (
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
+              <button 
+                className={`btn ${filterMode === 'category' ? 'btn-primary' : 'btn-outline'}`}
+                onClick={() => handleModeToggle('category')}
+                style={{ padding: '0.4rem 1.5rem', borderRadius: '30px' }}
+              >
+                Filtrar por Categoría
+              </button>
+              <button 
+                className={`btn ${filterMode === 'brand' ? 'btn-primary' : 'btn-outline'}`}
+                onClick={() => handleModeToggle('brand')}
+                style={{ padding: '0.4rem 1.5rem', borderRadius: '30px' }}
+              >
+                Filtrar por Marca
+              </button>
+            </div>
+          )}
 
-          {/* Filters (Oculto temporalmente) */}
-          <div className="filters-container glass" style={{ display: 'none', justifyContent: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '4rem', padding: '1.5rem', borderRadius: '16px' }}>
+          {/* Filtros de Categorías Activos */}
+          <div className="filters-container glass" style={{ marginBottom: '3.5rem' }}>
             {activeFilters.map(filterOption => (
               <button 
                 key={filterOption} 
@@ -230,7 +262,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
             <div className="text-center" style={{ marginTop: '3rem' }}>
               <button 
                 className="btn btn-primary" 
-                onClick={() => fetchCatalog(true)}
+                onClick={() => fetchCatalog(true, activeCategory)}
                 disabled={loadingMore}
                 style={{ padding: '0.8rem 2rem', fontSize: '1.1rem' }}
               >

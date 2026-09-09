@@ -238,7 +238,7 @@ const Landing = () => {
               themeClass="theme-auto"
               title="COLECCIÓN AUTOLOOK"
               subtitle="Equipamiento de nivel competitivo para tu vehículo."
-              categories={['Todos', 'Aerodinámica', 'Rines', 'Performance', 'Iluminación']} 
+              categories={['Todos', 'Seguridad', 'Repuestos', 'Lujos', 'Accesorios', 'Iluminación', 'Aerodinámica', 'Rines', 'Performance']} 
               hideLayout={true}
             />
           ) : selectedCatalog === 'motolook' ? (
@@ -247,7 +247,7 @@ const Landing = () => {
               themeClass="theme-moto"
               title="COLECCIÓN MOTOLOOK"
               subtitle="Accesorios y repuestos para dominar el asfalto."
-              categories={['Todos', 'Repuestos', 'Lujos', 'Seguridad', 'Accesorios']} 
+              categories={['Todos', 'Seguridad', 'Lujos', 'Repuestos', 'Accesorios']} 
               hideLayout={true}
             />
           ) : selectedCatalog === 'techlook' ? (
@@ -256,7 +256,7 @@ const Landing = () => {
               themeClass="theme-moto"
               title="COLECCIÓN TECNOLOGÍA"
               subtitle="GPS, sensores y comunicación de alta precisión."
-              categories={['Todos', 'GPS y Rastreo', 'Sensores', 'Radios y Comunicación', 'Otros']} 
+              categories={['Todos', 'GPS y Rastreo', 'Sensores', 'Radios y Comunicación', 'Seguridad', 'Otros']} 
               hideLayout={true}
             />
           ) : null}

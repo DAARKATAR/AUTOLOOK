@@ -23,14 +23,18 @@ const validateProductData = (data) => {
 
 export const catalogApi = {
   // GET ALL PRODUCTS
-  getProducts: async (storeType = 'todos', limit = null, offset = 0) => {
+  getProducts: async (storeType = 'todos', limit = null, offset = 0, category = null) => {
     let query = supabase
       .from('products')
       .select('*', { count: 'exact' })
       .order('id', { ascending: false });
 
-    if (storeType !== 'todos') {
+    if (storeType && storeType !== 'todos') {
       query = query.eq('storeType', storeType);
+    }
+
+    if (category && category !== 'Todos') {
+      query = query.eq('category', category);
     }
 
     if (limit) {
@@ -40,6 +44,22 @@ export const catalogApi = {
     const { data, count, error } = await query;
     if (error) throw error;
     return { data, count };
+  },
+
+  // GET DISTINCT CATEGORIES FROM SUPABASE
+  getCategories: async (storeType = 'todos') => {
+    let query = supabase
+      .from('products')
+      .select('category');
+
+    if (storeType && storeType !== 'todos') {
+      query = query.eq('storeType', storeType);
+    }
+
+    const { data, error } = await query;
+    if (error) throw error;
+    const categories = Array.from(new Set(data.map(item => item.category).filter(Boolean)));
+    return categories;
   },
 
   // CREATE PRODUCT
