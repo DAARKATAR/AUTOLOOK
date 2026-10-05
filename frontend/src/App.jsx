@@ -2,9 +2,9 @@ import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import WhatsAppFloat from './shared/components/WhatsAppFloat';
 import SharedCatalog from './shared/components/SharedCatalog';
+import Landing from './pages/Landing';
 
-// Lazy loading para mejorar el rendimiento
-const Landing = lazy(() => import('./pages/Landing'));
+// Lazy loading para rutas de administración
 const Login = lazy(() => import('./apps/admin_panel/pages/Login'));
 const AdminDashboard = lazy(() => import('./apps/admin_panel/pages/AdminDashboard'));
 const ProtectedRoute = lazy(() => import('./apps/admin_panel/components/ProtectedRoute'));

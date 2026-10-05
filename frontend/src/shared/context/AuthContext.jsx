@@ -8,24 +8,55 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar sesión inicial
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
+    let isMounted = true;
+
+    // Timeout de seguridad: NUNCA dejar loading en true por más de 1.5s
+    const timer = setTimeout(() => {
+      if (isMounted) setLoading(false);
+    }, 1500);
+
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
+    if (supabaseUrl.includes('tu-proyecto.supabase.co')) {
+      clearTimeout(timer);
       setLoading(false);
-    });
+      return;
+    }
+
+    // Verificar sesión inicial
+    supabase.auth.getSession()
+      .then(({ data }) => {
+        if (isMounted) {
+          clearTimeout(timer);
+          setSession(data?.session || null);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        console.warn('Error al verificar sesión de Supabase:', err);
+        if (isMounted) {
+          clearTimeout(timer);
+          setLoading(false);
+        }
+      });
 
     // Escuchar cambios (login, logout, token expirado)
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setLoading(false);
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, newSession) => {
+      if (isMounted) {
+        setSession(newSession);
+        setLoading(false);
+      }
     });
 
-    return () => subscription.unsubscribe();
+    return () => {
+      isMounted = false;
+      clearTimeout(timer);
+      authListener?.subscription?.unsubscribe();
+    };
   }, []);
 
   return (
     <AuthContext.Provider value={{ session, loading }}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 };

@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Reemplazar con las URLs y Keys reales de tu proyecto de Supabase
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://tu-proyecto.supabase.co';
-const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'tu-anon-key';
+// Usar variables de entorno o credenciales oficiales de AutoLook
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://yhaqhvabffziqavztjdp.supabase.co';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'sb_publishable_RZfSIWf_V1eFCeuUCcDdMQ_3Jwum4j1';
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
