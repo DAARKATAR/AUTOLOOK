@@ -3,6 +3,7 @@ import { SeoHead } from './SeoHead';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import { catalogApi } from '../services/api';
+import { getWhatsAppUrl } from '../services/whatsapp';
 import './SharedCatalog.css';
 
 const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hideLayout = false }) => {
@@ -121,9 +122,8 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const activeFilters = filterMode === 'category' ? availableCategories : uniqueBrands;
 
   const handleWhatsAppQuote = (productName) => {
-    const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "573138663821"; // Número real de AutoLook
     const message = `¡Hola! Me gustaría cotizar y saber si tienen en stock el producto: ${productName}`;
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    const url = getWhatsAppUrl(message);
     window.open(url, '_blank');
   };
 
