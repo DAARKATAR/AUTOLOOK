@@ -57,6 +57,14 @@ const Landing = () => {
     "url": "https://www.mbautolook.com/",
     "image": "https://www.mbautolook.com/quienes-somos.jpg",
     "priceRange": "$$",
+    "currenciesAccepted": "COP",
+    "paymentAccepted": "Efectivo, Tarjeta de Crédito, Transferencia Bancaria",
+    "hasMap": "https://maps.google.com/?q=Calle+13+%2310-04+Funza+Cundinamarca",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 4.7164,
+      "longitude": -74.2120
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Calle 13 #10-04",
@@ -87,9 +95,9 @@ const Landing = () => {
   return (
     <div className="unified-landing">
       <SeoHead
-        title="Repuestos y Lujos para Autos y Motos en Funza, Mosquera y Madrid"
-        description="Catálogo de repuestos, lujos, accesorios de alto rendimiento, GPS, sensores y radios para autos y motos en Funza, Mosquera y Madrid (Cundinamarca). Todas las marcas: Pirelli, Brembo y más."
-        keywords="repuestos Funza, lujos Mosquera, accesorios para carros Madrid Cundinamarca, repuestos motos Funza, tienda de accesorios automotrices Mosquera"
+        title="Repuestos y Lujos en Funza y Mosquera"
+        description="Repuestos, lujos y accesorios para autos y motos en Funza, Mosquera y Madrid. Radios Android, GPS, alarmas y marcas líderes. Asesoría directa por WhatsApp."
+        keywords="repuestos Funza, lujos Mosquera, accesorios carros Madrid Cundinamarca, repuestos motos Funza, alarmas GPS Funza, radios pantalla Carplay Funza"
         schema={localBusinessSchema}
       />
       <Navbar />
@@ -103,7 +111,7 @@ const Landing = () => {
             loop 
             playsInline 
             className="hero-video"
-            poster="https://images.unsplash.com/photo-1549557451-b847ae91b107?q=80&w=2000&auto=format&fit=crop"
+            poster="/hero-look.png"
             ref={(video) => {
               if (video) {
                 video.defaultMuted = true;
