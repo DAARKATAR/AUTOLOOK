@@ -121,7 +121,7 @@ const SharedCatalog = ({ storeType, title, subtitle, categories, themeClass, hid
   const activeFilters = filterMode === 'category' ? availableCategories : uniqueBrands;
 
   const handleWhatsAppQuote = (productName) => {
-    const phoneNumber = "573018265636"; // Número real de AutoLook
+    const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || "573138663821"; // Número real de AutoLook
     const message = `¡Hola! Me gustaría cotizar y saber si tienen en stock el producto: ${productName}`;
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');

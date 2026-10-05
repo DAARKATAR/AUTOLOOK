@@ -5,7 +5,7 @@ import './WhatsAppFloat.css';
 
 const WhatsAppFloat = () => {
   const location = useLocation();
-  const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '573018265636';
+  const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '573138663821';
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent("¡Hola! Quisiera más información sobre los repuestos y accesorios de su catálogo.")}`;
 
   // Ocultar en el panel de administrador y login
