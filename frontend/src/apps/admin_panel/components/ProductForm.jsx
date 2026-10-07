@@ -1,9 +1,27 @@
 import React, { useState } from 'react';
 import { Car, Bike, Radio, Check, AlertCircle } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
+import CustomAlertModal from '../../../shared/components/CustomAlertModal';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
   const [imageError, setImageError] = useState('');
+  const [alertModal, setAlertModal] = useState({
+    isOpen: false,
+    title: '',
+    message: ''
+  });
+
+  const showAlert = (title, message) => {
+    setAlertModal({
+      isOpen: true,
+      title,
+      message
+    });
+  };
+
+  const closeAlert = () => {
+    setAlertModal(prev => ({ ...prev, isOpen: false }));
+  };
 
   const getSelectedCatalogs = (val) => {
     if (!val) return ['autolook'];
@@ -20,7 +38,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
     let next;
     if (selectedCatalogs.includes(catalogKey)) {
       if (selectedCatalogs.length === 1) {
-        alert('El producto debe pertenecer al menos a un catálogo.');
+        showAlert('Catálogo Obligatorio', 'El producto debe pertenecer al menos a una tienda o catálogo.');
         return;
       }
       next = selectedCatalogs.filter(c => c !== catalogKey);
@@ -36,7 +54,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
     // Validar obligatoriedad de imagen
     if (!formData.imageUrl || !formData.imageUrl.trim()) {
       setImageError('Es obligatorio subir una imagen del producto antes de guardarlo.');
-      alert('Error: Debes subir una imagen para el producto antes de poder crearlo.');
+      showAlert('Imagen Obligatoria', 'No se puede crear el producto sin una fotografía. Por favor, sube una imagen de tu producto en formato PNG o JPG.');
       return;
     }
 
@@ -51,7 +69,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
       setImageError('');
       fetchProducts();
     } catch (error) {
-      alert("Error al guardar: " + error.message);
+      showAlert('Error al Guardar', error.message || 'Ocurrió un problema al guardar el producto en el catálogo.');
     }
   };
 
@@ -64,7 +82,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
         const url = await catalogApi.uploadImage(file);
         setFormData({ ...formData, imageUrl: url });
       } catch (error) {
-        alert(error.message);
+        showAlert('Error al Subir Imagen', error.message || 'No se pudo subir la imagen.');
       } finally {
         setIsUploading(false);
       }
@@ -246,6 +264,16 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
           {isEditing && <button type="button" onClick={resetForm} className="btn btn-outline" disabled={isUploading}>Cancelar</button>}
         </div>
       </form>
+
+      {/* Modal personalizado de advertencias y errores */}
+      <CustomAlertModal
+        isOpen={alertModal.isOpen}
+        onClose={closeAlert}
+        title={alertModal.title}
+        message={alertModal.message}
+        type="warning"
+        confirmText="Entendido"
+      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Edit2, Trash2, RefreshCw } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
+import CustomAlertModal from '../../../shared/components/CustomAlertModal';
 
 const getSelectedCatalogs = (val) => {
   if (!val) return ['autolook'];
@@ -12,10 +13,23 @@ const getSelectedCatalogs = (val) => {
 };
 
 const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProducts, editProduct }) => {
+  const [deleteModal, setDeleteModal] = useState({
+    isOpen: false,
+    productId: null,
+    productName: ''
+  });
 
-  const handleDelete = async (id) => {
-    if (window.confirm('¿Seguro que deseas eliminar este producto?')) {
-      await catalogApi.deleteProduct(id);
+  const requestDelete = (prod) => {
+    setDeleteModal({
+      isOpen: true,
+      productId: prod.id,
+      productName: prod.name
+    });
+  };
+
+  const confirmDelete = async () => {
+    if (deleteModal.productId) {
+      await catalogApi.deleteProduct(deleteModal.productId);
       fetchProducts();
     }
   };
@@ -81,7 +95,7 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                   </td>
                   <td className="actions-cell">
                     <button onClick={() => editProduct(prod)} className="action-btn edit" title="Editar"><Edit2 size={16} /></button>
-                    <button onClick={() => handleDelete(prod.id)} className="action-btn delete" title="Eliminar"><Trash2 size={16} /></button>
+                    <button onClick={() => requestDelete(prod)} className="action-btn delete" title="Eliminar"><Trash2 size={16} /></button>
                   </td>
                 </tr>
               ))
@@ -89,6 +103,18 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
           </tbody>
         </table>
       </div>
+
+      {/* Modal de confirmación para eliminar producto */}
+      <CustomAlertModal
+        isOpen={deleteModal.isOpen}
+        onClose={() => setDeleteModal({ isOpen: false, productId: null, productName: '' })}
+        title="¿Eliminar Producto?"
+        message={`¿Estás seguro de que deseas eliminar "${deleteModal.productName}" del inventario? Esta acción no se puede deshacer.`}
+        type="confirm"
+        confirmText="Sí, Eliminar"
+        cancelText="Cancelar"
+        onConfirm={confirmDelete}
+      />
     </div>
   );
 };
