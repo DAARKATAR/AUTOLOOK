@@ -1,8 +1,9 @@
-import React from 'react';
-import { Car, Bike, Radio, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { Car, Bike, Radio, Check, AlertCircle } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
+  const [imageError, setImageError] = useState('');
 
   const getSelectedCatalogs = (val) => {
     if (!val) return ['autolook'];
@@ -31,6 +32,15 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar obligatoriedad de imagen
+    if (!formData.imageUrl || !formData.imageUrl.trim()) {
+      setImageError('Es obligatorio subir una imagen del producto antes de guardarlo.');
+      alert('Error: Debes subir una imagen para el producto antes de poder crearlo.');
+      return;
+    }
+
+    setImageError('');
     try {
       if (isEditing) {
         await catalogApi.updateProduct(formData.id, formData);
@@ -38,6 +48,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
         await catalogApi.addProduct(formData);
       }
       resetForm();
+      setImageError('');
       fetchProducts();
     } catch (error) {
       alert("Error al guardar: " + error.message);
@@ -49,6 +60,7 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
     if (file) {
       try {
         setIsUploading(true);
+        setImageError('');
         const url = await catalogApi.uploadImage(file);
         setFormData({ ...formData, imageUrl: url });
       } catch (error) {
@@ -197,9 +209,11 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
         </div>
 
         <div className="form-group file-upload-wrapper">
-          <label>Imagen del Producto (PNG/JPG)</label>
-          <div className="file-input-container">
-            <input type="file" id="file" accept="image/png, image/jpeg" onChange={handleImageUpload} className="file-input-hidden" />
+          <label>
+            Imagen del Producto (PNG/JPG) <span style={{ color: 'var(--primary)', fontWeight: 700 }}>* (Obligatorio)</span>
+          </label>
+          <div className={`file-input-container ${imageError ? 'file-input-error' : ''}`}>
+            <input type="file" id="file" accept="image/png, image/jpeg, image/webp" onChange={handleImageUpload} className="file-input-hidden" />
             <label htmlFor="file" className="btn btn-outline file-btn">
               Subir Archivo
             </label>
@@ -207,6 +221,22 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               {isUploading ? 'Subiendo imagen a Supabase...' : (formData.imageUrl ? '✓ Imagen subida con éxito' : 'Ningún archivo seleccionado')}
             </span>
           </div>
+
+          {/* Mensaje de error si falta la imagen */}
+          {imageError && (
+            <div className="file-error-badge">
+              <AlertCircle size={15} />
+              <span>{imageError}</span>
+            </div>
+          )}
+
+          {/* Vista previa miniatura de la imagen cargada */}
+          {formData.imageUrl && !isUploading && (
+            <div className="uploaded-image-preview">
+              <img src={formData.imageUrl} alt="Vista previa del producto" className="uploaded-preview-img" />
+              <span className="uploaded-preview-text">Vista previa cargada correctamente</span>
+            </div>
+          )}
         </div>
 
         <div className="form-actions">

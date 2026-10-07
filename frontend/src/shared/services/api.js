@@ -19,6 +19,11 @@ const validateProductData = (data) => {
       throw new Error('El nombre del producto es demasiado largo.');
     }
   }
+
+  // Validación obligatoria de imagen
+  if (data.imageUrl === undefined || typeof data.imageUrl !== 'string' || data.imageUrl.trim() === '') {
+    throw new Error('La imagen del producto es obligatoria. Debes subir un archivo de imagen antes de guardar.');
+  }
 };
 
 export const catalogApi = {

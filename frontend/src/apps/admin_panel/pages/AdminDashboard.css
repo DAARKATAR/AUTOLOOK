@@ -326,6 +326,52 @@ input[type="number"] { -moz-appearance: textfield; }
   white-space: nowrap;
 }
 
+.file-input-container.file-input-error {
+  border: 1.5px solid var(--primary);
+  border-radius: 8px;
+  padding: 0.35rem 0.5rem;
+  background: rgba(230, 57, 70, 0.04);
+}
+
+.file-error-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary);
+  background: rgba(230, 57, 70, 0.08);
+  border: 1px solid rgba(230, 57, 70, 0.2);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+.uploaded-image-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: #F8F9FA;
+  border: 1px solid rgba(10, 17, 40, 0.08);
+  border-radius: 10px;
+}
+
+.uploaded-preview-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid rgba(10, 17, 40, 0.1);
+}
+
+.uploaded-preview-text {
+  font-size: 0.8rem;
+  color: #059669;
+  font-weight: 600;
+}
+
 /* Form Actions */
 .form-actions {
   display: flex;
