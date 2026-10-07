@@ -543,8 +543,8 @@ input[type="number"] { -moz-appearance: textfield; }
 
 .catalog-cards-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
 }
 
 @media (max-width: 680px) {
@@ -594,20 +594,21 @@ input[type="number"] { -moz-appearance: textfield; }
 }
 
 .catalog-card-icon {
-  font-size: 1.35rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   background: #F3F4F6;
-  border-radius: 8px;
-  transition: all 0.2s;
+  color: var(--secondary);
+  border-radius: 10px;
+  transition: all 0.2s ease;
 }
 
 .catalog-card-item.is-active .catalog-card-icon {
-  background: rgba(230, 57, 70, 0.1);
-  transform: scale(1.06);
+  background: rgba(230, 57, 70, 0.12);
+  color: var(--primary);
+  transform: scale(1.05);
 }
 
 .catalog-card-check {

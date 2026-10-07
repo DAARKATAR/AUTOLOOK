@@ -5,7 +5,7 @@ import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
 import { getWhatsAppUrl } from '../shared/services/whatsapp';
-import { Wrench, ShieldCheck, Award } from 'lucide-react';
+import { Wrench, ShieldCheck, Award, MapPin, Mail, Clock } from 'lucide-react';
 import gpsBg from '../assets/gps-bg.jpg';
 import './Landing.css';
 
@@ -141,7 +141,7 @@ const Landing = () => {
               <div className="card-content">
                 <h3>MOTOCICLETAS</h3>
                 <p>Repuestos • Lujos • Seguridad</p>
-                <span className="btn-glow">Ver Catálogo 🏍️</span>
+                <span className="btn-glow">Ver Catálogo</span>
               </div>
             </div>
 
@@ -150,7 +150,7 @@ const Landing = () => {
               <div className="card-content">
                 <h3>AUTOMÓVILES</h3>
                 <p>Rines • Aerodinámica • Iluminación</p>
-                <span className="btn-glow auto-glow">Ver Catálogo 🚗</span>
+                <span className="btn-glow auto-glow">Ver Catálogo</span>
               </div>
             </div>
 
@@ -160,7 +160,7 @@ const Landing = () => {
               <div className="card-content">
                 <h3>TECNOLOGÍA Y GPS</h3>
                 <p>Radios de Comunicacion • Sensores</p>
-                <span className="btn-glow tech-glow">Ver Catálogo 📡</span>
+                <span className="btn-glow tech-glow">Ver Catálogo</span>
               </div>
             </div>
           </div>
@@ -285,15 +285,15 @@ const Landing = () => {
               <h3>Contacto Directo</h3>
               <ul className="contact-list">
                 <li>
-                  <span className="icon">📍</span>
+                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><MapPin size={18} color="var(--primary)" /></span>
                   <span><strong>Dirección:</strong> Calle 13 #10-04, Funza</span>
                 </li>
                 <li>
-                  <span className="icon">✉️</span>
+                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Mail size={18} color="var(--primary)" /></span>
                   <span><strong>Correo:</strong> autolookcolombia@gmail.com</span>
                 </li>
                 <li>
-                  <span className="icon">🕒</span>
+                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Clock size={18} color="var(--primary)" /></span>
                   <span><strong>Horario:</strong> Lunes a Sábado: 8:00am - 6:00pm</span>
                 </li>
               </ul>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Car, Bike, Check } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
@@ -7,8 +7,10 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
   const getSelectedCatalogs = (val) => {
     if (!val) return ['autolook'];
     if (Array.isArray(val)) return val;
-    if (val === 'general') return ['autolook', 'motolook', 'techlook'];
-    return val.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+    if (val === 'general') return ['autolook', 'motolook'];
+    const parts = val.split(',').map(s => s.trim().toLowerCase());
+    const valid = parts.filter(s => s === 'autolook' || s === 'motolook');
+    return valid.length > 0 ? valid : ['autolook'];
   };
 
   const selectedCatalogs = getSelectedCatalogs(formData.storeType);
@@ -68,11 +70,11 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
           </div>
         </div>
 
-        {/* Sección Destacada: Canales de Publicación / Catálogos */}
+        {/* Sección: Canales de Publicación / Catálogos */}
         <div className="form-catalog-section">
           <div className="section-meta-header">
             <span className="section-meta-title">Publicar en Catálogos</span>
-            <span className="section-meta-subtitle">Selecciona una o más tiendas donde estará visible el producto</span>
+            <span className="section-meta-subtitle">Selecciona una o ambas tiendas donde estará visible el producto</span>
           </div>
 
           <div className="catalog-cards-grid">
@@ -86,14 +88,16 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               aria-checked={selectedCatalogs.includes('autolook')}
             >
               <div className="catalog-card-header">
-                <span className="catalog-card-icon">🚗</span>
+                <span className="catalog-card-icon">
+                  <Car size={20} strokeWidth={2} />
+                </span>
                 <div className={`catalog-card-check ${selectedCatalogs.includes('autolook') ? 'checked' : ''}`}>
                   {selectedCatalogs.includes('autolook') && <Check size={13} strokeWidth={3} />}
                 </div>
               </div>
               <div className="catalog-card-body">
                 <span className="catalog-card-name">AutoLook</span>
-                <span className="catalog-card-desc">Carros, lujos y confort</span>
+                <span className="catalog-card-desc">Carros, lujos y repuestos automotrices</span>
               </div>
             </div>
 
@@ -107,35 +111,16 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               aria-checked={selectedCatalogs.includes('motolook')}
             >
               <div className="catalog-card-header">
-                <span className="catalog-card-icon">🏍️</span>
+                <span className="catalog-card-icon">
+                  <Bike size={20} strokeWidth={2} />
+                </span>
                 <div className={`catalog-card-check ${selectedCatalogs.includes('motolook') ? 'checked' : ''}`}>
                   {selectedCatalogs.includes('motolook') && <Check size={13} strokeWidth={3} />}
                 </div>
               </div>
               <div className="catalog-card-body">
                 <span className="catalog-card-name">MotoLook</span>
-                <span className="catalog-card-desc">Motos y equipamiento</span>
-              </div>
-            </div>
-
-            {/* TechLook */}
-            <div 
-              type="button"
-              className={`catalog-card-item ${selectedCatalogs.includes('techlook') ? 'is-active' : ''}`}
-              onClick={() => toggleCatalog('techlook')}
-              tabIndex={0}
-              role="checkbox"
-              aria-checked={selectedCatalogs.includes('techlook')}
-            >
-              <div className="catalog-card-header">
-                <span className="catalog-card-icon">📡</span>
-                <div className={`catalog-card-check ${selectedCatalogs.includes('techlook') ? 'checked' : ''}`}>
-                  {selectedCatalogs.includes('techlook') && <Check size={13} strokeWidth={3} />}
-                </div>
-              </div>
-              <div className="catalog-card-body">
-                <span className="catalog-card-name">TechLook</span>
-                <span className="catalog-card-desc">GPS, radios y multimedia</span>
+                <span className="catalog-card-desc">Motos, repuestos y equipamiento</span>
               </div>
             </div>
           </div>
