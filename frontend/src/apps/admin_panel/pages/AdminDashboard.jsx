@@ -18,7 +18,7 @@ const AdminDashboard = () => {
   const [formData, setFormData] = useState({
     id: null,
     name: '',
-    storeType: 'motolook',
+    storeType: 'autolook',
     category: 'Repuestos',
     brand: '', 
     price: '',
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
     setFormData({
       id: prod.id,
       name: prod.name || '',
-      storeType: prod.storeType || 'motolook',
+      storeType: prod.storeType || 'autolook',
       category: prod.category || 'Repuestos',
       brand: prod.brand || '',
       price: prod.price || '',
@@ -65,7 +65,7 @@ const AdminDashboard = () => {
   };
 
   const resetForm = () => {
-    setFormData({ id: null, name: '', storeType: 'motolook', category: 'Repuestos', brand: '', price: '', priceMax: '', imageUrl: '', description: '' });
+    setFormData({ id: null, name: '', storeType: 'autolook', category: 'Repuestos', brand: '', price: '', priceMax: '', imageUrl: '', description: '' });
     setIsEditing(false);
   };
 

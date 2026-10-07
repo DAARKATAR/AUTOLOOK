@@ -30,7 +30,8 @@ export const catalogApi = {
       .order('id', { ascending: false });
 
     if (storeType && storeType !== 'todos') {
-      query = query.eq('storeType', storeType);
+      // Coincide si el producto incluye el catálogo o está marcado como general
+      query = query.or(`storeType.ilike.%${storeType}%,storeType.eq.general`);
     }
 
     if (category && category !== 'Todos') {
@@ -50,10 +51,10 @@ export const catalogApi = {
   getCategories: async (storeType = 'todos') => {
     let query = supabase
       .from('products')
-      .select('category');
+      .select('category, storeType');
 
     if (storeType && storeType !== 'todos') {
-      query = query.eq('storeType', storeType);
+      query = query.or(`storeType.ilike.%${storeType}%,storeType.eq.general`);
     }
 
     const { data, error } = await query;

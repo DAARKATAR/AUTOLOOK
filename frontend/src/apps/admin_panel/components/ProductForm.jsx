@@ -3,6 +3,29 @@ import { catalogApi } from '../../../shared/services/api';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
 
+  const getSelectedCatalogs = (val) => {
+    if (!val) return ['autolook'];
+    if (Array.isArray(val)) return val;
+    if (val === 'general') return ['autolook', 'motolook', 'techlook'];
+    return val.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+  };
+
+  const selectedCatalogs = getSelectedCatalogs(formData.storeType);
+
+  const toggleCatalog = (catalogKey) => {
+    let next;
+    if (selectedCatalogs.includes(catalogKey)) {
+      if (selectedCatalogs.length === 1) {
+        alert('El producto debe pertenecer al menos a un catálogo.');
+        return;
+      }
+      next = selectedCatalogs.filter(c => c !== catalogKey);
+    } else {
+      next = [...selectedCatalogs, catalogKey];
+    }
+    setFormData({ ...formData, storeType: next.join(',') });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -44,15 +67,44 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
           </div>
         </div>
         <div className="form-row">
-          <div className="form-group">
-            <label>Sucursal / Vehículo</label>
-            <select value={formData.storeType} onChange={e => setFormData({...formData, storeType: e.target.value})}>
-              <option value="motolook">Moto (MotoLook)</option>
-              <option value="autolook">Carro (AutoLook)</option>
-              <option value="techlook">Tecnología (GPS y Radios)</option>
-              <option value="general">Todos (General)</option>
-            </select>
+          <div className="form-group" style={{ gridColumn: '1 / -1' }}>
+            <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600 }}>
+              Catálogos donde estará disponible (Selecciona 1 o más)
+            </label>
+            <div className="catalog-checkboxes-group">
+              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('autolook') ? 'is-checked' : ''}`}>
+                <input 
+                  type="checkbox"
+                  className="catalog-checkbox-input"
+                  checked={selectedCatalogs.includes('autolook')}
+                  onChange={() => toggleCatalog('autolook')}
+                />
+                🚗 Carro (AutoLook)
+              </label>
+
+              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('motolook') ? 'is-checked' : ''}`}>
+                <input 
+                  type="checkbox"
+                  className="catalog-checkbox-input"
+                  checked={selectedCatalogs.includes('motolook')}
+                  onChange={() => toggleCatalog('motolook')}
+                />
+                🏍️ Moto (MotoLook)
+              </label>
+
+              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('techlook') ? 'is-checked' : ''}`}>
+                <input 
+                  type="checkbox"
+                  className="catalog-checkbox-input"
+                  checked={selectedCatalogs.includes('techlook')}
+                  onChange={() => toggleCatalog('techlook')}
+                />
+                📡 Tecnología (TechLook)
+              </label>
+            </div>
           </div>
+        </div>
+        <div className="form-row">
           <div className="form-group">
             <label>Categoría</label>
             <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})}>

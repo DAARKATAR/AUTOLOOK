@@ -2,6 +2,13 @@ import React from 'react';
 import { Edit2, Trash2, RefreshCw } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
+const getSelectedCatalogs = (val) => {
+  if (!val) return ['autolook'];
+  if (Array.isArray(val)) return val;
+  if (val === 'general') return ['autolook', 'motolook', 'techlook'];
+  return val.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+};
+
 const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProducts, editProduct }) => {
 
   const handleDelete = async (id) => {
@@ -54,9 +61,16 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                     <small style={{color: '#6B7A9A', fontSize: '0.8rem'}}>{prod.brand}</small>
                   </td>
                   <td>
-                    <span className={`badge ${prod.storeType === 'autolook' ? 'badge-auto' : prod.storeType === 'motolook' ? 'badge-moto' : prod.storeType === 'techlook' ? 'badge-moto' : 'badge-general'}`}>
-                      {prod.storeType === 'autolook' ? 'Carro' : prod.storeType === 'motolook' ? 'Moto' : prod.storeType === 'techlook' ? 'GPS/Tech' : 'Universal'}
-                    </span>
+                    <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                      {getSelectedCatalogs(prod.storeType).map(cat => (
+                        <span 
+                          key={cat} 
+                          className={`badge ${cat === 'autolook' ? 'badge-auto' : cat === 'motolook' ? 'badge-moto' : cat === 'techlook' ? 'badge-tech' : 'badge-general'}`}
+                        >
+                          {cat === 'autolook' ? 'Auto' : cat === 'motolook' ? 'Moto' : cat === 'techlook' ? 'Tech' : cat}
+                        </span>
+                      ))}
+                    </div>
                   </td>
                   <td><span className="badge">{prod.category}</span></td>
                   <td>
