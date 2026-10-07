@@ -512,47 +512,143 @@ input[type="number"] { -moz-appearance: textfield; }
 .text-center { text-align: center; }
 .py-4 { padding-top: 2rem; padding-bottom: 2rem; }
 
-/* ---- Catalog Checkboxes Group ---- */
-.catalog-checkboxes-group {
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 0.35rem;
+/* ---- Luxury Catalog Selector Cards ---- */
+.form-catalog-section {
+  background: #F8F9FC;
+  border: 1.5px solid rgba(10, 17, 40, 0.08);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
-.catalog-checkbox-label {
+.section-meta-header {
+  margin-bottom: 0.85rem;
+}
+
+.section-meta-title {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.section-meta-subtitle {
+  display: block;
+  font-size: 0.78rem;
+  color: #6B7A9A;
+  margin-top: 0.15rem;
+}
+
+.catalog-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 680px) {
+  .catalog-cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.catalog-card-item {
+  background: #FFFFFF;
+  border: 2px solid rgba(10, 17, 40, 0.08);
+  border-radius: 12px;
+  padding: 0.95rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(10, 17, 40, 0.03);
+  outline: none;
+}
+
+.catalog-card-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(230, 57, 70, 0.4);
+  box-shadow: 0 6px 16px rgba(10, 17, 40, 0.08);
+}
+
+.catalog-card-item:focus-visible {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+}
+
+.catalog-card-item.is-active {
+  background: #FFFFFF;
+  border-color: var(--primary);
+  box-shadow: 0 4px 14px rgba(230, 57, 70, 0.16);
+}
+
+.catalog-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog-card-icon {
+  font-size: 1.35rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.65rem 1rem;
-  background: #F8F9FA;
-  border: 1.5px solid rgba(10, 17, 40, 0.12);
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--secondary);
-  transition: all 0.2s ease;
-  user-select: none;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #F3F4F6;
+  border-radius: 8px;
+  transition: all 0.2s;
 }
 
-.catalog-checkbox-label:hover {
-  border-color: rgba(230, 57, 70, 0.4);
+.catalog-card-item.is-active .catalog-card-icon {
+  background: rgba(230, 57, 70, 0.1);
+  transform: scale(1.06);
+}
+
+.catalog-card-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid rgba(10, 17, 40, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #FFFFFF;
+  color: #FFFFFF;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.catalog-checkbox-label.is-checked {
-  background: rgba(230, 57, 70, 0.08);
+.catalog-card-check.checked {
+  background: var(--primary);
   border-color: var(--primary);
-  color: var(--primary);
-  box-shadow: 0 2px 8px rgba(230, 57, 70, 0.12);
+  box-shadow: 0 2px 6px rgba(230, 57, 70, 0.4);
 }
 
-.catalog-checkbox-input {
-  accent-color: var(--primary);
-  width: 17px;
-  height: 17px;
-  cursor: pointer;
+.catalog-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.catalog-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.catalog-card-item.is-active .catalog-card-name {
+  color: var(--primary);
+}
+
+.catalog-card-desc {
+  font-size: 0.74rem;
+  color: #6B7A9A;
+  line-height: 1.3;
 }
 
 /* Badge variants for catalogs */

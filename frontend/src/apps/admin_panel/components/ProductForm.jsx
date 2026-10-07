@@ -1,4 +1,5 @@
 import React from 'react';
+import { Check } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
@@ -63,44 +64,79 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
         <div className="form-row">
           <div className="form-group" style={{gridColumn: '1 / -1'}}>
             <label>Nombre del Producto</label>
-            <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} />
+            <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} placeholder="Ej: Radio Android 9 Pulgadas CarPlay" />
           </div>
         </div>
-        <div className="form-row">
-          <div className="form-group" style={{ gridColumn: '1 / -1' }}>
-            <label style={{ display: 'block', marginBottom: '0.4rem', fontWeight: 600 }}>
-              Catálogos donde estará disponible (Selecciona 1 o más)
-            </label>
-            <div className="catalog-checkboxes-group">
-              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('autolook') ? 'is-checked' : ''}`}>
-                <input 
-                  type="checkbox"
-                  className="catalog-checkbox-input"
-                  checked={selectedCatalogs.includes('autolook')}
-                  onChange={() => toggleCatalog('autolook')}
-                />
-                🚗 Carro (AutoLook)
-              </label>
 
-              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('motolook') ? 'is-checked' : ''}`}>
-                <input 
-                  type="checkbox"
-                  className="catalog-checkbox-input"
-                  checked={selectedCatalogs.includes('motolook')}
-                  onChange={() => toggleCatalog('motolook')}
-                />
-                🏍️ Moto (MotoLook)
-              </label>
+        {/* Sección Destacada: Canales de Publicación / Catálogos */}
+        <div className="form-catalog-section">
+          <div className="section-meta-header">
+            <span className="section-meta-title">Publicar en Catálogos</span>
+            <span className="section-meta-subtitle">Selecciona una o más tiendas donde estará visible el producto</span>
+          </div>
 
-              <label className={`catalog-checkbox-label ${selectedCatalogs.includes('techlook') ? 'is-checked' : ''}`}>
-                <input 
-                  type="checkbox"
-                  className="catalog-checkbox-input"
-                  checked={selectedCatalogs.includes('techlook')}
-                  onChange={() => toggleCatalog('techlook')}
-                />
-                📡 Tecnología (TechLook)
-              </label>
+          <div className="catalog-cards-grid">
+            {/* AutoLook */}
+            <div 
+              type="button"
+              className={`catalog-card-item ${selectedCatalogs.includes('autolook') ? 'is-active' : ''}`}
+              onClick={() => toggleCatalog('autolook')}
+              tabIndex={0}
+              role="checkbox"
+              aria-checked={selectedCatalogs.includes('autolook')}
+            >
+              <div className="catalog-card-header">
+                <span className="catalog-card-icon">🚗</span>
+                <div className={`catalog-card-check ${selectedCatalogs.includes('autolook') ? 'checked' : ''}`}>
+                  {selectedCatalogs.includes('autolook') && <Check size={13} strokeWidth={3} />}
+                </div>
+              </div>
+              <div className="catalog-card-body">
+                <span className="catalog-card-name">AutoLook</span>
+                <span className="catalog-card-desc">Carros, lujos y confort</span>
+              </div>
+            </div>
+
+            {/* MotoLook */}
+            <div 
+              type="button"
+              className={`catalog-card-item ${selectedCatalogs.includes('motolook') ? 'is-active' : ''}`}
+              onClick={() => toggleCatalog('motolook')}
+              tabIndex={0}
+              role="checkbox"
+              aria-checked={selectedCatalogs.includes('motolook')}
+            >
+              <div className="catalog-card-header">
+                <span className="catalog-card-icon">🏍️</span>
+                <div className={`catalog-card-check ${selectedCatalogs.includes('motolook') ? 'checked' : ''}`}>
+                  {selectedCatalogs.includes('motolook') && <Check size={13} strokeWidth={3} />}
+                </div>
+              </div>
+              <div className="catalog-card-body">
+                <span className="catalog-card-name">MotoLook</span>
+                <span className="catalog-card-desc">Motos y equipamiento</span>
+              </div>
+            </div>
+
+            {/* TechLook */}
+            <div 
+              type="button"
+              className={`catalog-card-item ${selectedCatalogs.includes('techlook') ? 'is-active' : ''}`}
+              onClick={() => toggleCatalog('techlook')}
+              tabIndex={0}
+              role="checkbox"
+              aria-checked={selectedCatalogs.includes('techlook')}
+            >
+              <div className="catalog-card-header">
+                <span className="catalog-card-icon">📡</span>
+                <div className={`catalog-card-check ${selectedCatalogs.includes('techlook') ? 'checked' : ''}`}>
+                  {selectedCatalogs.includes('techlook') && <Check size={13} strokeWidth={3} />}
+                </div>
+              </div>
+              <div className="catalog-card-body">
+                <span className="catalog-card-name">TechLook</span>
+                <span className="catalog-card-desc">GPS, radios y multimedia</span>
+              </div>
             </div>
           </div>
         </div>
