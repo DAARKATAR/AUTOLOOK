@@ -1,5 +1,5 @@
 import React from 'react';
-import { Car, Bike, Check } from 'lucide-react';
+import { Car, Bike, Radio, Check } from 'lucide-react';
 import { catalogApi } from '../../../shared/services/api';
 
 const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploading, resetForm, fetchProducts }) => {
@@ -7,9 +7,9 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
   const getSelectedCatalogs = (val) => {
     if (!val) return ['autolook'];
     if (Array.isArray(val)) return val;
-    if (val === 'general') return ['autolook', 'motolook'];
+    if (val === 'general') return ['autolook', 'motolook', 'techlook'];
     const parts = val.split(',').map(s => s.trim().toLowerCase());
-    const valid = parts.filter(s => s === 'autolook' || s === 'motolook');
+    const valid = parts.filter(s => s === 'autolook' || s === 'motolook' || s === 'techlook');
     return valid.length > 0 ? valid : ['autolook'];
   };
 
@@ -121,6 +121,29 @@ const ProductForm = ({ formData, setFormData, isEditing, isUploading, setIsUploa
               <div className="catalog-card-body">
                 <span className="catalog-card-name">MotoLook</span>
                 <span className="catalog-card-desc">Motos, repuestos y equipamiento</span>
+              </div>
+            </div>
+
+            {/* Tecnología (GPS, Radios, Sensores) */}
+            <div 
+              type="button"
+              className={`catalog-card-item ${selectedCatalogs.includes('techlook') ? 'is-active' : ''}`}
+              onClick={() => toggleCatalog('techlook')}
+              tabIndex={0}
+              role="checkbox"
+              aria-checked={selectedCatalogs.includes('techlook')}
+            >
+              <div className="catalog-card-header">
+                <span className="catalog-card-icon">
+                  <Radio size={20} strokeWidth={2} />
+                </span>
+                <div className={`catalog-card-check ${selectedCatalogs.includes('techlook') ? 'checked' : ''}`}>
+                  {selectedCatalogs.includes('techlook') && <Check size={13} strokeWidth={3} />}
+                </div>
+              </div>
+              <div className="catalog-card-body">
+                <span className="catalog-card-name">Tecnología</span>
+                <span className="catalog-card-desc">GPS, radios, multimedia y sensores</span>
               </div>
             </div>
           </div>

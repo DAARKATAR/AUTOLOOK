@@ -5,9 +5,9 @@ import { catalogApi } from '../../../shared/services/api';
 const getSelectedCatalogs = (val) => {
   if (!val) return ['autolook'];
   if (Array.isArray(val)) return val;
-  if (val === 'general') return ['autolook', 'motolook'];
+  if (val === 'general') return ['autolook', 'motolook', 'techlook'];
   const parts = val.split(',').map(s => s.trim().toLowerCase());
-  const valid = parts.filter(s => s === 'autolook' || s === 'motolook');
+  const valid = parts.filter(s => s === 'autolook' || s === 'motolook' || s === 'techlook');
   return valid.length > 0 ? valid : ['autolook'];
 };
 
@@ -67,9 +67,9 @@ const ProductTable = ({ products, loading, activeTab, setActiveTab, fetchProduct
                       {getSelectedCatalogs(prod.storeType).map(cat => (
                         <span 
                           key={cat} 
-                          className={`badge ${cat === 'autolook' ? 'badge-auto' : 'badge-moto'}`}
+                          className={`badge ${cat === 'autolook' ? 'badge-auto' : cat === 'motolook' ? 'badge-moto' : 'badge-tech'}`}
                         >
-                          {cat === 'autolook' ? 'AutoLook' : 'MotoLook'}
+                          {cat === 'autolook' ? 'AutoLook' : cat === 'motolook' ? 'MotoLook' : 'Tecnología'}
                         </span>
                       ))}
                     </div>
