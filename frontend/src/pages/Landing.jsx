@@ -5,7 +5,7 @@ import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
 import { getWhatsAppUrl } from '../shared/services/whatsapp';
-import { Wrench, ShieldCheck, Award, MapPin, Mail, Clock, Building, Camera } from 'lucide-react';
+import { Wrench, ShieldCheck, Award, MapPin, Mail, Clock } from 'lucide-react';
 import gpsBg from '../assets/gps-bg.jpg';
 import './Landing.css';
 
@@ -14,7 +14,6 @@ const Landing = () => {
   const navigate = useNavigate();
   const [selectedCatalog, setSelectedCatalog] = useState(type || null);
   const [catalogKey, setCatalogKey] = useState(0);
-  const [activeLocationView, setActiveLocationView] = useState('map');
 
   useEffect(() => {
     if (type) {
@@ -192,16 +191,6 @@ const Landing = () => {
               <p>
                 <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 11 #10A-3)</strong>, atendiendo también a clientes de <strong>Mosquera y Madrid</strong>.
               </p>
-
-              {/* Tarjeta de Nueva Sede Física */}
-              <div className="about-sede-card">
-                <img src="/nuevo-local.png" alt="Fachada Nueva Sede AutoLook Funza" className="about-sede-thumb" />
-                <div className="about-sede-info">
-                  <span className="about-sede-tag">NUEVA SEDE FÍSICA • FUNZA</span>
-                  <h4>Taller & Bahías de Instalación</h4>
-                  <p>Espacio propio y cómodo en la Calle 11 #10A-3 para equipar tu auto o moto con la máxima seguridad.</p>
-                </div>
-              </div>
               
               <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>Nuestra Misión</h3>
               <p>
@@ -292,80 +281,61 @@ const Landing = () => {
           </div>
           
           <div className="location-grid">
-            <div className="contact-info-panel">
-              <h3>Contacto Directo</h3>
-              <ul className="contact-list">
-                <li>
-                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><MapPin size={18} color="var(--primary)" /></span>
-                  <span><strong>Dirección:</strong> Calle 11 #10A-3, Funza</span>
-                </li>
-                <li>
-                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Mail size={18} color="var(--primary)" /></span>
-                  <span><strong>Correo:</strong> autolookcolombia@gmail.com</span>
-                </li>
-                <li>
-                  <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Clock size={18} color="var(--primary)" /></span>
-                  <span><strong>Horario:</strong> Lunes a Sábado: 8:00am - 6:00pm</span>
-                </li>
-              </ul>
-              
-              <h4 style={{ marginTop: '2rem', marginBottom: '1rem', color: 'var(--secondary)' }}>Nuestras Redes</h4>
-              <div className="social-links-large">
-                <a href={getWhatsAppUrl("¡Hola! Me gustaría comunicarme con AutoLook & MotoLook.")} target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp" aria-label="Contactar por WhatsApp">
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.01 2.01c-5.51 0-9.99 4.48-9.99 9.99 0 1.76.46 3.44 1.32 4.96L2.01 22l5.17-1.36c1.47.78 3.1 1.19 4.82 1.19 5.51 0 9.99-4.48 9.99-9.99S17.52 2.01 12.01 2.01zM17.3 15.54c-.23.64-1.29 1.18-1.78 1.25-.43.06-.97.12-2.83-.65-2.25-.93-3.7-3.25-3.81-3.4-.11-.15-.91-1.22-.91-2.33s.58-1.65.78-1.87c.21-.23.46-.28.61-.28s.32.01.46.01c.15 0 .34-.06.53.4.21.5.55 1.34.6 1.45.05.11.08.24.01.38-.07.15-.11.24-.23.38-.11.14-.24.31-.34.42-.11.12-.23.25-.1.48.13.23.58.96 1.24 1.55.85.76 1.56 1 1.8 1.11.23.11.37.09.51-.06.14-.15.6-1.02.77-1.37.15-.35.31-.29.53-.21.22.08 1.39.65 1.63.77.24.12.4.18.45.28.05.11.05.62-.18 1.25z" /></svg>
-                </a>
-                <a href="https://www.instagram.com/mbautolook?igsh=OGIzcDB0aDN2bmp0&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="Instagram" aria-label="Perfil de Instagram">
-                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-                <a href="https://www.facebook.com/profile.php?id=61591241101287" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="Facebook" aria-label="Perfil de Facebook">
-                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                </a>
-                <a href="#!" onClick={(e) => e.preventDefault()} className="social-icon-large" title="TikTok (Próximamente)" aria-label="Perfil de TikTok (Próximamente)">
-                  <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                </a>
+            <div className="contact-info-panel location-showcase-panel">
+              <div className="location-facade-cover">
+                <img src="/nuevo-local.png" alt="Fachada AutoLook & MotoLook Funza" className="location-facade-img" />
+                <div className="location-facade-overlay">
+                  <span className="location-facade-badge">Fachada en Esquina</span>
+                  <span className="location-facade-hint">Calle 11 #10A-3, Funza</span>
+                </div>
+              </div>
+
+              <div className="location-details-content">
+                <h3>Contacto Directo</h3>
+                <ul className="contact-list">
+                  <li>
+                    <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><MapPin size={18} color="var(--primary)" /></span>
+                    <span><strong>Dirección:</strong> Calle 11 #10A-3, Funza</span>
+                  </li>
+                  <li>
+                    <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Mail size={18} color="var(--primary)" /></span>
+                    <span><strong>Correo:</strong> autolookcolombia@gmail.com</span>
+                  </li>
+                  <li>
+                    <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Clock size={18} color="var(--primary)" /></span>
+                    <span><strong>Horario:</strong> Lunes a Sábado: 8:00am - 6:00pm</span>
+                  </li>
+                </ul>
+                
+                <h4 style={{ marginTop: '1.5rem', marginBottom: '0.85rem', color: 'var(--secondary)' }}>Nuestras Redes</h4>
+                <div className="social-links-large">
+                  <a href={getWhatsAppUrl("¡Hola! Me gustaría comunicarme con AutoLook & MotoLook.")} target="_blank" rel="noopener noreferrer" className="social-icon-large" title="WhatsApp" aria-label="Contactar por WhatsApp">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12.01 2.01c-5.51 0-9.99 4.48-9.99 9.99 0 1.76.46 3.44 1.32 4.96L2.01 22l5.17-1.36c1.47.78 3.1 1.19 4.82 1.19 5.51 0 9.99-4.48 9.99-9.99S17.52 2.01 12.01 2.01zM17.3 15.54c-.23.64-1.29 1.18-1.78 1.25-.43.06-.97.12-2.83-.65-2.25-.93-3.7-3.25-3.81-3.4-.11-.15-.91-1.22-.91-2.33s.58-1.65.78-1.87c.21-.23.46-.28.61-.28s.32.01.46.01c.15 0 .34-.06.53.4.21.5.55 1.34.6 1.45.05.11.08.24.01.38-.07.15-.11.24-.23.38-.11.14-.24.31-.34.42-.11.12-.23.25-.1.48.13.23.58.96 1.24 1.55.85.76 1.56 1 1.8 1.11.23.11.37.09.51-.06.14-.15.6-1.02.77-1.37.15-.35.31-.29.53-.21.22.08 1.39.65 1.63.77.24.12.4.18.45.28.05.11.05.62-.18 1.25z" /></svg>
+                  </a>
+                  <a href="https://www.instagram.com/mbautolook?igsh=OGIzcDB0aDN2bmp0&utm_source=ig_contact_invite" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="Instagram" aria-label="Perfil de Instagram">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=61591241101287" target="_blank" rel="noopener noreferrer" className="social-icon-large" title="Facebook" aria-label="Perfil de Facebook">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                  </a>
+                  <a href="#!" onClick={(e) => e.preventDefault()} className="social-icon-large" title="TikTok (Próximamente)" aria-label="Perfil de TikTok (Próximamente)">
+                    <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                  </a>
+                </div>
               </div>
             </div>
             
-            <div className="location-media-wrapper">
-              <div className="location-media-tabs">
-                <button 
-                  type="button" 
-                  className={`location-tab-btn ${activeLocationView === 'map' ? 'active' : ''}`}
-                  onClick={() => setActiveLocationView('map')}
-                >
-                  <MapPin size={16} /> Mapa de Google
-                </button>
-                <button 
-                  type="button" 
-                  className={`location-tab-btn ${activeLocationView === 'photo' ? 'active' : ''}`}
-                  onClick={() => setActiveLocationView('photo')}
-                >
-                  <Building size={16} /> Fachada del Local
-                </button>
-              </div>
-
-              {activeLocationView === 'map' ? (
-                <div className="maps-container">
-                  <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.32736002168!2d-74.21562992436596!3d4.713081541548766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f82ab90e39e65%3A0x251aa5f6bf9a72a!2sCl.%2011%20%23%2010A-3%2C%20Funza%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1792694363566!5m2!1ses-419!2sco" 
-                    width="100%" 
-                    height="100%" 
-                    style={{ border: 0 }}
-                    allowFullScreen="" 
-                    loading="lazy" 
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    title="AutoLook & MotoLook Ubicación Funza"
-                  ></iframe>
-                </div>
-              ) : (
-                <div className="local-photo-container">
-                  <img src="/nuevo-local.png" alt="Fachada Nuevo Local AutoLook Funza" className="local-photo-img" />
-                  <div className="local-photo-overlay">
-                    <span className="local-badge">Sede Principal en Esquina</span>
-                    <p className="local-address-hint">Calle 11 #10A-3, Funza (Taller de Instalaciones)</p>
-                  </div>
-                </div>
-              )}
+            <div className="maps-container">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.32736002168!2d-74.21562992436596!3d4.713081541548766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f82ab90e39e65%3A0x251aa5f6bf9a72a!2sCl.%2011%20%23%2010A-3%2C%20Funza%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1792694363566!5m2!1ses-419!2sco" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }}
+                allowFullScreen="" 
+                loading="lazy" 
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="AutoLook & MotoLook Ubicación Funza"
+              ></iframe>
             </div>
           </div>
           </div>
