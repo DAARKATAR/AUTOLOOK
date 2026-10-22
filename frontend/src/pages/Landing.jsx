@@ -59,15 +59,15 @@ const Landing = () => {
     "priceRange": "$$",
     "currenciesAccepted": "COP",
     "paymentAccepted": "Efectivo, Tarjeta de Crédito, Transferencia Bancaria",
-    "hasMap": "https://maps.google.com/?q=Calle+13+%2310-04+Funza+Cundinamarca",
+    "hasMap": "https://maps.google.com/?q=Cl.+11+%23+10A-3,+Funza,+Cundinamarca",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 4.7164,
-      "longitude": -74.2120
+      "latitude": 4.7130815,
+      "longitude": -74.2156299
     },
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Calle 13 #10-04",
+      "streetAddress": "Calle 11 #10A-3",
       "addressLocality": "Funza",
       "addressRegion": "Cundinamarca",
       "addressCountry": "CO"
@@ -189,7 +189,7 @@ const Landing = () => {
               <span className="subtitle-accent">NUESTRA HISTORIA</span>
               <h2>AUTOLOOK <span className="gradient-neon">COLOMBIA</span></h2>
               <p>
-                <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 13 #10-04)</strong>, atendiendo también a clientes de <strong>Mosquera y Madrid</strong>.
+                <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 11 #10A-3)</strong>, atendiendo también a clientes de <strong>Mosquera y Madrid</strong>.
               </p>
               
               <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>Nuestra Misión</h3>
@@ -286,7 +286,7 @@ const Landing = () => {
               <ul className="contact-list">
                 <li>
                   <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><MapPin size={18} color="var(--primary)" /></span>
-                  <span><strong>Dirección:</strong> Calle 13 #10-04, Funza</span>
+                  <span><strong>Dirección:</strong> Calle 11 #10A-3, Funza</span>
                 </li>
                 <li>
                   <span className="icon" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><Mail size={18} color="var(--primary)" /></span>
@@ -317,13 +317,14 @@ const Landing = () => {
             
             <div className="maps-container">
               <iframe 
-                src="https://www.google.com/maps?q=Calle+13+%2310-04,+Funza,+Colombia&output=embed" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.32736002168!2d-74.21562992436596!3d4.713081541548766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f82ab90e39e65%3A0x251aa5f6bf9a72a!2sCl.%2011%20%23%2010A-3%2C%20Funza%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1792694363566!5m2!1ses-419!2sco" 
                 width="100%" 
                 height="100%" 
+                style={{ border: 0 }}
                 allowFullScreen="" 
                 loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Autolook Funza Location"
+                referrerPolicy="strict-origin-when-cross-origin"
+                title="AutoLook & MotoLook Ubicación Funza"
               ></iframe>
             </div>
           </div>
