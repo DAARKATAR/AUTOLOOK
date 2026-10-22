@@ -5,7 +5,7 @@ import Navbar from '../shared/components/Navbar';
 import Footer from '../shared/components/Footer';
 import SharedCatalog from '../shared/components/SharedCatalog';
 import { getWhatsAppUrl } from '../shared/services/whatsapp';
-import { Wrench, ShieldCheck, Award, MapPin, Mail, Clock } from 'lucide-react';
+import { Wrench, ShieldCheck, Award, MapPin, Mail, Clock, Building, Camera } from 'lucide-react';
 import gpsBg from '../assets/gps-bg.jpg';
 import './Landing.css';
 
@@ -14,6 +14,7 @@ const Landing = () => {
   const navigate = useNavigate();
   const [selectedCatalog, setSelectedCatalog] = useState(type || null);
   const [catalogKey, setCatalogKey] = useState(0);
+  const [activeLocationView, setActiveLocationView] = useState('map');
 
   useEffect(() => {
     if (type) {
@@ -191,6 +192,16 @@ const Landing = () => {
               <p>
                 <strong>Más de 15 años de experiencia.</strong> Nacimos en Bogotá a partir del trabajo conjunto con diferentes concesionarios de carros, lo que nos dio la experiencia y el conocimiento para brindar el mejor servicio en la ciudad y zonas aledañas. Hoy contamos con nuestro punto físico principal en <strong>Funza (Calle 11 #10A-3)</strong>, atendiendo también a clientes de <strong>Mosquera y Madrid</strong>.
               </p>
+
+              {/* Tarjeta de Nueva Sede Física */}
+              <div className="about-sede-card">
+                <img src="/nuevo-local.png" alt="Fachada Nueva Sede AutoLook Funza" className="about-sede-thumb" />
+                <div className="about-sede-info">
+                  <span className="about-sede-tag">NUEVA SEDE FÍSICA • FUNZA</span>
+                  <h4>Taller & Bahías de Instalación</h4>
+                  <p>Espacio propio y cómodo en la Calle 11 #10A-3 para equipar tu auto o moto con la máxima seguridad.</p>
+                </div>
+              </div>
               
               <h3 style={{ fontSize: '1.5rem', marginTop: '1.5rem', marginBottom: '0.5rem', color: 'var(--secondary)' }}>Nuestra Misión</h3>
               <p>
@@ -315,17 +326,46 @@ const Landing = () => {
               </div>
             </div>
             
-            <div className="maps-container">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.32736002168!2d-74.21562992436596!3d4.713081541548766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f82ab90e39e65%3A0x251aa5f6bf9a72a!2sCl.%2011%20%23%2010A-3%2C%20Funza%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1792694363566!5m2!1ses-419!2sco" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }}
-                allowFullScreen="" 
-                loading="lazy" 
-                referrerPolicy="strict-origin-when-cross-origin"
-                title="AutoLook & MotoLook Ubicación Funza"
-              ></iframe>
+            <div className="location-media-wrapper">
+              <div className="location-media-tabs">
+                <button 
+                  type="button" 
+                  className={`location-tab-btn ${activeLocationView === 'map' ? 'active' : ''}`}
+                  onClick={() => setActiveLocationView('map')}
+                >
+                  <MapPin size={16} /> Mapa de Google
+                </button>
+                <button 
+                  type="button" 
+                  className={`location-tab-btn ${activeLocationView === 'photo' ? 'active' : ''}`}
+                  onClick={() => setActiveLocationView('photo')}
+                >
+                  <Building size={16} /> Fachada del Local
+                </button>
+              </div>
+
+              {activeLocationView === 'map' ? (
+                <div className="maps-container">
+                  <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.32736002168!2d-74.21562992436596!3d4.713081541548766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f82ab90e39e65%3A0x251aa5f6bf9a72a!2sCl.%2011%20%23%2010A-3%2C%20Funza%2C%20Cundinamarca!5e0!3m2!1ses-419!2sco!4v1792694363566!5m2!1ses-419!2sco" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }}
+                    allowFullScreen="" 
+                    loading="lazy" 
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    title="AutoLook & MotoLook Ubicación Funza"
+                  ></iframe>
+                </div>
+              ) : (
+                <div className="local-photo-container">
+                  <img src="/nuevo-local.png" alt="Fachada Nuevo Local AutoLook Funza" className="local-photo-img" />
+                  <div className="local-photo-overlay">
+                    <span className="local-badge">Sede Principal en Esquina</span>
+                    <p className="local-address-hint">Calle 11 #10A-3, Funza (Taller de Instalaciones)</p>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           </div>
